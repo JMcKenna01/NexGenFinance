@@ -20,8 +20,13 @@ const resolvers = {
 // Creating the Apollo Server with the schema and resolvers
 const server = new ApolloServer({ typeDefs, resolvers });
 
-// Applying the Apollo GraphQL middleware and specifying the path
-server.applyMiddleware({ app });
+// Starting the Apollo Server
+async function startServer() {
+    await server.start();
+    server.applyMiddleware({ app });
+}
+
+startServer();
 
 app.get('/', (req, res) => {
   res.send('Hello World from Express!');
