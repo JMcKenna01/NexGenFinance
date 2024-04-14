@@ -1,29 +1,16 @@
 const express = require('express');
-const { ApolloServer, gql } = require('apollo-server-express');
+const { ApolloServer } = require('apollo-server-express');
+const schema = require('./schema/index');  // Import your GraphQL schema
 
 const app = express();
 
-// Defining the GraphQL schema
-const typeDefs = gql`
-  type Query {
-    hello: String
-  }
-`;
-
-// Defining the resolvers for the schema
-const resolvers = {
-    Query: {
-        hello: () => 'Hello world!',
-    },
-};
-
-// Creating the Apollo Server with the schema and resolvers
-const server = new ApolloServer({ typeDefs, resolvers });
+// Creating the Apollo Server with the imported schema
+const server = new ApolloServer({ schema });
 
 // Starting the Apollo Server
 async function startServer() {
     await server.start();
-    server.applyMiddleware({ app });
+    server.applyMiddleware({ app, path: '/graphql' });  // Explicitly define the GraphQL path if needed
 }
 
 startServer();
