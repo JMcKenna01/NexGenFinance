@@ -1,6 +1,6 @@
 const express = require('express');
 const { ApolloServer } = require('apollo-server-express');
-const schema = require('./schema/index');  // Import your GraphQL schema
+const schema = require('./graphql/index');  // Import your GraphQL schema
 
 const app = express();
 
