@@ -1,6 +1,6 @@
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
-const { User, Transaction, Account, Budget, Investment } = require('../models'); // Assuming your models are in the '../models' directory
+const { User, Transaction, Account, Budget, Investment } = require('../models'); 
 
 // Helper function to create a JWT token
 const createToken = (user, expiresIn) => {
@@ -89,7 +89,7 @@ const resolvers = {
         throw new Error(`Error creating user: ${error.message}`);
       }
     },
-    
+
     deleteUser: async (_, { id }) => {
       try {
         const deletedUser = await User.findByIdAndDelete(id);
