@@ -1,28 +1,49 @@
+require('dotenv').config({ path: '../.env'});
+
 const express = require('express');
 const { ApolloServer } = require('apollo-server-express');
-const schema = require('./graphql/index');  // Import your GraphQL schema
+const path = require('path');
+const { authMiddleware } = require('./utils/auth');
+const { typeDefs, resolvers } = require('./graphql');
+const db = require('./config/connection');
+const cors = require('cors');
 
+const PORT = process.env.PORT || 3001;
 const app = express();
+app.use(cors()); 
 
-// Creating the Apollo Server with the imported schema
-const server = new ApolloServer({ schema });
+const server = new ApolloServer({
+  typeDefs,
+  resolvers,
+  context: authMiddleware,
+  persistedQueries: false, // Disable persisted queries
+});
 
-// Starting the Apollo Server
-async function startServer() {
-    await server.start();
-    server.applyMiddleware({ app, path: '/graphql' });  // Explicitly define the GraphQL path if needed
+app.use(express.urlencoded({ extended: false }));
+app.use(express.json());
+
+// if we're in production, serve client/dist as static assets
+if (process.env.NODE_ENV === 'production') {
+  app.use(express.static(path.join(__dirname, '../client/dist')));
+  app.get('*', (req, res) => {
+    res.sendFile(path.join(__dirname, '../client/dist/index.html'));
+  });
 }
 
-startServer();
 
-app.get('/', (req, res) => {
-  res.send('Hello World from Express!');
-});
 
-const PORT = process.env.PORT || 4000;
+// Create a new instance of an Apollo server with the GraphQL schema
+const startApolloServer = async () => {
+  await server.start();
+  server.applyMiddleware({ app });
 
-// Starting the Express server
-app.listen(PORT, () => {
-  console.log(`🚀 Server is running on http://localhost:${PORT}`);
-  console.log(`🚀 GraphQL ready at http://localhost:${PORT}${server.graphqlPath}`);
-});
+  db.once('open', () => {
+    app.listen(PORT, () => {
+      console.log(`API server running on port ${PORT}!`);
+      console.log(`Use GraphQL at http://localhost:${PORT}${server.graphqlPath}`);
+    });
+  });
+};
+
+// Call the async function to start the server
+startApolloServer();
