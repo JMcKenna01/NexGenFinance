@@ -33,6 +33,7 @@ const typeDefs = gql`
     category: String!
     limit: Float!
     currentSpend: Float!
+    userId: ID!
   }
 
   type Investment {
@@ -40,22 +41,33 @@ const typeDefs = gql`
     type: String!
     amount: Float!
     date: String!
+    firm: String
+    broker: String
+    userId: ID!
+  }
+
+  type AuthData {
+    userId: ID!
+    token: String!
+    tokenExpiration: Int!
   }
 
   type Query {
     getUser(id: ID!): User
-    getTransactions(userId: ID!): [Transaction]
-    getAccount(accountId: ID!): Account
-    getBudgets(userId: ID!): [Budget]
-    getInvestments(userId: ID!): [Investment]
+    getTransaction(id: ID!): Transaction
+    getAccount(id: ID!): Account
+    getBudget(id: ID!): Budget
+    getInvestment(id: ID!): Investment
   }
 
   type Mutation {
-    createUser(username: String!, email: String!): User
-    createTransaction(userId: ID!, type: String!, category: String, amount: Float!, date: String!, accountId: ID!): Transaction
-    updateAccountBalance(accountId: ID!, newBalance: Float!): Account
-    createBudget(userId: ID!, category: String!, limit: Float!): Budget
-    investAmount(userId: ID!, type: String!, amount: Float!, date: String!): Investment
+    login(email: String!, password: String!): AuthData
+    createUser(username: String!, email: String!, password: String!): User
+    deleteUser(id: ID!): User
+    createTransaction(type: String!, category: String, amount: Float!, date: String!, accountId: ID!): Transaction
+    createAccount(name: String!, accountType: String!, balance: Float!): Account
+    createBudget(category: String!, limit: Float!, currentSpend: Float!, userId: ID!): Budget
+    createInvestment(type: String!, amount: Float!, date: String!, firm: String, broker: String, userId: ID!): Investment
   }
 `;
 
