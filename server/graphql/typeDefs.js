@@ -63,11 +63,20 @@ const typeDefs = gql`
   type Mutation {
     login(email: String!, password: String!): AuthData
     createUser(username: String!, email: String!, password: String!): User
+    updateUser(id: ID!, username: String, email: String, currentPassword: String, newPassword: String): User
     deleteUser(id: ID!): User
     createTransaction(type: String!, category: String, amount: Float!, date: String!, accountId: ID!): Transaction
+    updateTransaction(id: ID!, type: String!, category: String, amount: Float!, date: String!): Transaction
+    deleteTransaction(id: ID!): Transaction
     createAccount(name: String!, accountType: String!, balance: Float!): Account
+    updateAccount(id: ID!, name: String!, accountType: String!, balance: Float!): Account
+    deleteAccount(id: ID!): Account
     createBudget(category: String!, limit: Float!, currentSpend: Float!, userId: ID!): Budget
+    updateBudget(id: ID!, category: String!, limit: Float!, currentSpend: Float!): Budget
+    deleteBudget(id: ID!): Budget
     createInvestment(type: String!, amount: Float!, date: String!, firm: String, broker: String, userId: ID!): Investment
+    updateInvestment(id: ID!, type: String!, amount: Float!, date: String!, firm: String, broker: String): Investment
+    deleteInvestment(id: ID!): Investment
   }
 `;
 
