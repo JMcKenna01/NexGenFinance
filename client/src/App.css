@@ -11,9 +11,11 @@
   will-change: filter;
   transition: filter 300ms;
 }
+
 .logo:hover {
   filter: drop-shadow(0 0 2em #646cffaa);
 }
+
 .logo.react:hover {
   filter: drop-shadow(0 0 2em #61dafbaa);
 }
@@ -39,4 +41,28 @@
 
 .read-the-docs {
   color: #888;
+}
+
+/* New styles for main layout with sidebar */
+.App {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.main {
+  display: flex;
+  flex: 1;
+}
+
+.content {
+  flex: 1;
+  margin-left: 250px; /* Adjust this value based on your sidebar width */
+  padding: 20px;
+}
+
+/* Ensure the content within the root does not overlap with the sidebar */
+#root {
+  padding: 0; /* Remove existing padding */
+  text-align: left; /* Adjust text alignment */
 }

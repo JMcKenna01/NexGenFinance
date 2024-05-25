@@ -1,0 +1,66 @@
+.sidebar {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 250px;
+    height: 100vh;
+    background-color: #333;
+    color: white;
+    position: fixed;
+    top: 0;
+    left: 0;
+    padding: 20px;
+  }
+  
+  .logo {
+    font-size: 1.5rem;
+    margin-bottom: 20px;
+  }
+  
+  .logoLink {
+    color: white;
+    text-decoration: none;
+  }
+  
+  .nav {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+  }
+  
+  .navLink {
+    color: white;
+    text-decoration: none;
+    font-size: 1rem;
+  }
+  
+  .navLink:hover,
+  .activeLink {
+    text-decoration: underline;
+  }
+  
+  .user {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: auto;
+  }
+  
+  .userInfo {
+    margin-bottom: 10px;
+  }
+  
+  .userName {
+    font-size: 1rem;
+  }
+  
+  .logoutLink {
+    color: #ff4d4d;
+    text-decoration: none;
+    font-size: 1rem;
+  }
+  
+  .logoutLink:hover {
+    text-decoration: underline;
+  }
+  
