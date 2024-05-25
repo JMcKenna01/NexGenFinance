@@ -9,6 +9,7 @@ import Transactions from './pages/Transactions';
 import GoalsManager from './pages/GoalsManager';
 import InvestmentDetails from './pages/InvestmentDetails';
 import BudgetManager from './pages/BudgetManager';
+import Dashboard from './pages/Dashboard';
 import './App.css';
 
 function App() {
@@ -25,6 +26,7 @@ function App() {
           <Route path="/goals" component={GoalsManager} />
           <Route path="/investments" component={InvestmentDetails} />
           <Route path="/budget" component={BudgetManager} />
+          <Route path="/dashboard" component={Dashboard} />
           {/* Add other routes here */}
         </Switch>
       </div>
