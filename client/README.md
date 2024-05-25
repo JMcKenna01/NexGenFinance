@@ -21,13 +21,13 @@ NexGenFinance is a comprehensive financial management application designed to he
 
 1. Clone the repository:
 
-git clone https://github.com/yourusername/nexgenfinance.git
-cd nexgenfinance
+- git clone https://github.com/yourusername/nexgenfinance.git
+- cd nexgenfinance
 
 2. Install dependencies:
 
-cd client
-npm install
+- cd client
+- npm install
 
 # Running the Application
 
