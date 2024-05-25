@@ -5,7 +5,7 @@ import Profile from './pages/Profile';
 import About from './pages/About';
 import Login from './pages/Login';
 import SignUp from './pages/SignUp';
-import Transactions from './pages/Transactions';
+import TransactionsPage from './pages/TransactionsPage';
 import GoalsManager from './pages/GoalsManager';
 import InvestmentDetails from './pages/InvestmentDetails';
 import BudgetManager from './pages/BudgetManager';
@@ -31,7 +31,7 @@ function App() {
               <Route path="/about" component={About} />
               <Route path="/login" component={Login} />
               <Route path="/signup" component={SignUp} />
-              <Route path="/transactions" component={Transactions} />
+              <Route path="/transactions" component={TransactionsPage} />
               <Route path="/goals" component={GoalsManager} />
               <Route path="/investments" component={InvestmentDetails} />
               <Route path="/budget" component={BudgetManager} />
