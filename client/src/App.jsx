@@ -10,14 +10,17 @@ import GoalsManager from './pages/GoalsManager';
 import InvestmentDetails from './pages/InvestmentDetails';
 import BudgetManager from './pages/BudgetManager';
 import Dashboard from './pages/Dashboard';
+import Navbar from './components/layout/Navbar';
 import './App.css';
 
 function App() {
   return (
     <Router>
       <div className="App">
+        <Navbar />
         <Switch>
           <Route exact path="/" component={Home} />
+          <Route path="/dashboard" component={Dashboard} />
           <Route path="/profile" component={Profile} />
           <Route path="/about" component={About} />
           <Route path="/login" component={Login} />
@@ -26,7 +29,6 @@ function App() {
           <Route path="/goals" component={GoalsManager} />
           <Route path="/investments" component={InvestmentDetails} />
           <Route path="/budget" component={BudgetManager} />
-          <Route path="/dashboard" component={Dashboard} />
           {/* Add other routes here */}
         </Switch>
       </div>
