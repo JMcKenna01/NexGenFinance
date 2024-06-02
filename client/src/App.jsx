@@ -9,6 +9,7 @@ import TransactionsPage from './pages/TransactionsPage';
 import GoalsManager from './pages/GoalsManager';
 import InvestmentDetails from './pages/InvestmentDetails';
 import InvestmentList from './components/InvestmentList'; // Import InvestmentList
+import InvestmentForm from './components/InvestmentForm'; // Import InvestmentForm
 import BudgetManager from './pages/BudgetManager';
 import Dashboard from './pages/Dashboard';
 import Contact from './pages/Contact';
@@ -34,8 +35,9 @@ function App() {
               <Route path="/signup" component={SignUp} />
               <Route path="/transactions" component={TransactionsPage} />
               <Route path="/goals" component={GoalsManager} />
-              <Route exact path="/investments" component={InvestmentList} /> {/* Add InvestmentList route */}
-              <Route path="/investments/:id" component={InvestmentDetails} /> {/* Add InvestmentDetails route */}
+              <Route exact path="/investments" component={InvestmentList} /> {/* InvestmentList route */}
+              <Route path="/investments/new" component={InvestmentForm} /> {/* InvestmentForm route */}
+              <Route path="/investments/:id" component={InvestmentDetails} /> {/* InvestmentDetails route */}
               <Route path="/budget" component={BudgetManager} />
               <Route path="/contact" component={Contact} />
               {/* Add other routes here */}
