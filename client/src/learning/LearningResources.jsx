@@ -1,4 +1,5 @@
 import React from 'react';
+import ResourceList from './ResourceList';
 import styles from './LearningResources.module.css';
 
 const LearningResources = () => {
@@ -37,15 +38,7 @@ const LearningResources = () => {
 
   return (
     <div className={styles.LearningResources}>
-      <h2>Learning Resources</h2>
-      <ul>
-        {resources.map(resource => (
-          <li key={resource.id} className={styles.ResourceItem}>
-            <h3><a href={resource.url} target="_blank" rel="noopener noreferrer">{resource.title}</a></h3>
-            <p>{resource.description}</p>
-          </li>
-        ))}
-      </ul>
+      <ResourceList resources={resources} />
     </div>
   );
 };
