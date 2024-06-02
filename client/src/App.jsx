@@ -8,11 +8,12 @@ import SignUp from './pages/SignUp';
 import TransactionsPage from './pages/TransactionsPage';
 import GoalsManager from './pages/GoalsManager';
 import InvestmentDetails from './pages/InvestmentDetails';
-import InvestmentList from './components/InvestmentList'; // Import InvestmentList
-import InvestmentForm from './components/InvestmentForm'; // Import InvestmentForm
+import InvestmentList from './components/InvestmentList'; 
+import InvestmentForm from './components/InvestmentForm';
 import BudgetManager from './pages/BudgetManager';
 import Dashboard from './pages/Dashboard';
 import Contact from './pages/Contact';
+import LearningResources from './pages/LearningResources'; // Import LearningResources
 import Navbar from './components/layout/Navbar';
 import Footer from './components/layout/Footer';
 import Sidebar from './components/layout/Sidebar';
@@ -35,11 +36,12 @@ function App() {
               <Route path="/signup" component={SignUp} />
               <Route path="/transactions" component={TransactionsPage} />
               <Route path="/goals" component={GoalsManager} />
-              <Route exact path="/investments" component={InvestmentList} /> {/* InvestmentList route */}
-              <Route path="/investments/new" component={InvestmentForm} /> {/* InvestmentForm route */}
-              <Route path="/investments/:id" component={InvestmentDetails} /> {/* InvestmentDetails route */}
+              <Route exact path="/investments" component={InvestmentList} />
+              <Route path="/investments/new" component={InvestmentForm} />
+              <Route path="/investments/:id" component={InvestmentDetails} />
               <Route path="/budget" component={BudgetManager} />
               <Route path="/contact" component={Contact} />
+              <Route path="/learning-resources" component={LearningResources} /> {/* Add LearningResources route */}
               {/* Add other routes here */}
             </Switch>
           </div>
