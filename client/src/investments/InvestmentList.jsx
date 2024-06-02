@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { gql, useQuery } from '@apollo/client';
-import { Link } from 'react-router-dom';
+import InvestmentItem from './InvestmentItem';
 
 const GET_INVESTMENTS = gql`
   query GetInvestments {
@@ -33,15 +33,7 @@ const InvestmentList = () => {
       <h2>Investment List</h2>
       <ul>
         {investments.map(investment => (
-          <li key={investment.id}>
-            <Link to={`/investments/${investment.id}`}>
-              <h3>{investment.name}</h3>
-            </Link>
-            <p>Type: {investment.type}</p>
-            <p>Current Value: ${investment.currentValue.toFixed(2)}</p>
-            <p>Initial Investment: ${investment.initialInvestment.toFixed(2)}</p>
-            <p>Date: {new Date(investment.date).toLocaleDateString()}</p>
-          </li>
+          <InvestmentItem key={investment.id} investment={investment} />
         ))}
       </ul>
     </div>
