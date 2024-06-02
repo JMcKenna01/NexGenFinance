@@ -1,0 +1,25 @@
+.ResourceItem {
+    margin-bottom: 20px;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+  }
+  
+  .ResourceItem h3 {
+    margin: 0;
+    font-size: 1.2em;
+  }
+  
+  .ResourceItem p {
+    margin: 5px 0;
+  }
+  
+  .ResourceItem a {
+    color: #007bff;
+    text-decoration: none;
+  }
+  
+  .ResourceItem a:hover {
+    text-decoration: underline;
+  }
+  
