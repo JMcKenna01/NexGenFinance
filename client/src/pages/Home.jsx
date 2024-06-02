@@ -4,7 +4,7 @@ import styles from './Home.module.css';
 import Button from '../ui/Button';
 import Navbar from '../components/layout/Navbar';
 import Footer from '../components/layout/Footer';
-import client from '../ApolloClient';
+
 
 const GET_HOME_DATA = gql`
   query GetHomeData {

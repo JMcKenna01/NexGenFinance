@@ -3,17 +3,18 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import Home from './pages/Home';
 import Profile from './pages/Profile';
 import About from './pages/About';
-import Login from './utils/Login'; // Corrected path based on utils folder
-import SignUp from './utils/SignUp'; // Corrected path based on utils folder
+import Login from './utils/login';
+import LogoutBtn from './utils/LogoutBtn' // Ensure the case matches the file name
+import SignUp from './utils/Signup'; // Ensure the case matches the file name
 import TransactionsPage from './pages/TransactionsPage';
 import GoalsManager from './pages/GoalsManager';
 import InvestmentDetails from './pages/InvestmentDetails';
-import InvestmentList from './components/InvestmentList';
-import InvestmentForm from './components/InvestmentForm';
+import InvestmentList from './investments/InvestmentList'; // Corrected path based on provided location
+import InvestmentForm from './investments/investmentForm'; // Corrected path based on provided location
 import BudgetManager from './pages/BudgetManager';
 import Dashboard from './pages/Dashboard';
 import Contact from './pages/Contact';
-import LearningResources from './pages/LearningResources';
+import LearningResources from './learning/LearningResources';
 import Navbar from './components/layout/Navbar';
 import Footer from './components/layout/Footer';
 import Sidebar from './components/layout/Sidebar';
@@ -32,8 +33,8 @@ function App() {
               <Route path="/dashboard" component={Dashboard} />
               <Route path="/profile" component={Profile} />
               <Route path="/about" component={About} />
-              <Route path="/login" component={Login} /> {/* Ensure this path is correct */}
-              <Route path="/signup" component={SignUp} /> {/* Ensure this path is correct */}
+              <Route path="/login" component={Login} />
+              <Route path="/signup" component={SignUp} />
               <Route path="/transactions" component={TransactionsPage} />
               <Route path="/goals" component={GoalsManager} />
               <Route exact path="/investments" component={InvestmentList} />

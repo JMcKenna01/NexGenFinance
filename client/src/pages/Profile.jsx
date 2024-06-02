@@ -4,7 +4,7 @@ import styles from './Profile.module.css';
 import Navbar from '../components/layout/Navbar';
 import Footer from '../components/layout/Footer';
 import Button from '../ui/Button';
-import client from '../ApolloClient';
+
 
 const GET_PROFILE = gql`
   query GetProfile {
