@@ -1,0 +1,29 @@
+.GoalsManager {
+    padding: 20px;
+  }
+  
+  .GoalsManager h2 {
+    margin-bottom: 20px;
+  }
+  
+  .GoalsManager ul {
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  .GoalsManager li {
+    margin-bottom: 20px;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+  }
+  
+  .GoalsManager li h3 {
+    margin: 0;
+    font-size: 1.2em;
+  }
+  
+  .GoalsManager li p {
+    margin: 5px 0;
+  }
+  
