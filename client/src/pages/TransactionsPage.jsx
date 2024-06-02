@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import Transactions from '../components/transactions/Transactions';
-import TransactionFilter from '../components/transactions/TransactionFilter';
+import Transactions from '../financial/Transactions';
+import TransactionFilter from '../financial/Transactions';
 import styles from './TransactionsPage.module.css';
 
 const TransactionsPage = () => {
