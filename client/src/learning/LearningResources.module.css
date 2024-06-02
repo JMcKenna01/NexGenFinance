@@ -1,0 +1,38 @@
+.LearningResources {
+    padding: 20px;
+  }
+  
+  .LearningResources h2 {
+    margin-bottom: 20px;
+  }
+  
+  .LearningResources ul {
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  .LearningResources .ResourceItem {
+    margin-bottom: 20px;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+  }
+  
+  .LearningResources .ResourceItem h3 {
+    margin: 0;
+    font-size: 1.2em;
+  }
+  
+  .LearningResources .ResourceItem p {
+    margin: 5px 0;
+  }
+  
+  .LearningResources .ResourceItem a {
+    color: #007bff;
+    text-decoration: none;
+  }
+  
+  .LearningResources .ResourceItem a:hover {
+    text-decoration: underline;
+  }
+  
