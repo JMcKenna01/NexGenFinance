@@ -1,10 +1,11 @@
 import React from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import LogoutBtn from '../../utils/LogoutBtn'; 
+import LogoutBtn from '../../utils/LogoutBtn';
 import styles from './Navbar.module.css';
 
 const Navbar = () => {
   const navigate = useNavigate();
+  const isAuthenticated = !!localStorage.getItem('token'); // Check if token exists
 
   const handleLogout = () => {
     localStorage.removeItem('token');
@@ -12,10 +13,26 @@ const Navbar = () => {
   };
 
   return (
-    <nav className={styles.navbar}>
-      <Link to="/">Home</Link>
-      <LogoutBtn />
-    </nav>
+    <header className={styles.header}>
+      <div className={styles.logoContainer}>
+        <img src="/path-to-your-logo.png" alt="NexGenFinance Logo" className={styles.logo} />
+        <h1 className={styles.title}>NexGenFinance</h1>
+      </div>
+      <nav className={styles.nav}>
+        <Link to="/">Home</Link>
+        <Link to="/about">About</Link>
+        <Link to="/profile">Profile</Link>
+        <Link to="/contact">Contact</Link>
+        {isAuthenticated ? (
+          <LogoutBtn onLogout={handleLogout} />
+        ) : (
+          <>
+            <Link to="/signup">Signup</Link>
+            <Link to="/login">Login</Link>
+          </>
+        )}
+      </nav>
+    </header>
   );
 };
 

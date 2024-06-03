@@ -39,10 +39,22 @@ const resolvers = {
   },
   Mutation: {
     login: async (_, { email, password }) => {
+      console.log('Login attempt:', email); // Log email for the login attempt
+
       const user = await User.findOne({ email });
-      if (!user) throw new Error('User not found');
+      if (!user) {
+        console.log('User not found');
+        throw new Error('User not found');
+      }
+
       const isValidPassword = await bcrypt.compare(password, user.password);
-      if (!isValidPassword) throw new Error('Invalid password');
+      console.log('Password valid:', isValidPassword); // Log the result of password comparison
+
+      if (!isValidPassword) {
+        console.log('Invalid password');
+        throw new Error('Invalid password');
+      }
+
       return {
         userId: user.id,
         token: createToken(user, '2h'),
@@ -52,13 +64,16 @@ const resolvers = {
     createUser: async (_, { username, email, password }) => {
       const existingUser = await User.findOne({ email });
       if (existingUser) throw new Error('User already exists');
+
       const hashedPassword = await bcrypt.hash(password, 12);
       const newUser = new User({
         username,
         email,
         password: hashedPassword
       });
+
       const result = await newUser.save();
+      console.log('User created:', result); // Log the created user
       return result;
     },
     deleteUser: async (_, { id }) => {
@@ -183,7 +198,7 @@ const resolvers = {
     },
     deleteInvestment: async (_, { id }) => {
       const deletedInvestment = await Investment.findByIdAndDelete(id);
-      if (!deletedInvestment) throw an Error('Investment not found');
+      if (!deletedInvestment) throw new Error('Investment not found');
       return deletedInvestment;
     }
   },

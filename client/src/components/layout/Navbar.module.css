@@ -1,49 +1,37 @@
-.navbar {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background-color: #333;
-    padding: 10px 20px;
-    color: white;
-  }
-  
-  .logo {
-    font-size: 1.5rem;
-    cursor: pointer;
-  }
-  
-  .navLinks {
-    list-style: none;
-    display: flex;
-    gap: 15px;
-    margin: 0;
-    padding: 0;
-  }
-  
-  .navLinks li {
-    margin: 0;
-  }
-  
-  .navLinks a {
-    color: white;
-    text-decoration: none;
-  }
-  
-  .navLinks a:hover {
-    text-decoration: underline;
-  }
-  
-  .authLinks {
-    display: flex;
-    gap: 15px;
-  }
-  
-  .loginLink, .signupLink {
-    color: white;
-    text-decoration: none;
-  }
-  
-  .loginLink:hover, .signupLink:hover {
-    text-decoration: underline;
-  }
-  
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+  background-color: #f8f9fa;
+  border-bottom: 1px solid #ddd;
+}
+
+.logoContainer {
+  display: flex;
+  align-items: center;
+}
+
+.logo {
+  height: 40px;
+  margin-left: 10px;
+}
+
+.title {
+  font-size: 1.5em;
+  color: #333;
+}
+
+.nav a, .nav button {
+  margin-left: 20px;
+  color: #007bff;
+  text-decoration: none;
+  border: none;
+  background: none;
+  cursor: pointer;
+  font: inherit;
+}
+
+.nav a:hover, .nav button:hover {
+  text-decoration: underline;
+}

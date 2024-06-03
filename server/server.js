@@ -10,14 +10,7 @@ const cors = require('cors');
 
 const PORT = process.env.PORT || 3001;
 const app = express();
-app.use(cors()); 
-
-const server = new ApolloServer({
-  typeDefs,
-  resolvers,
-  context: authMiddleware,
-  persistedQueries: false, // Disable persisted queries
-});
+app.use(cors());
 
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
@@ -30,9 +23,14 @@ if (process.env.NODE_ENV === 'production') {
   });
 }
 
+// Initialize Apollo Server
+const server = new ApolloServer({
+  typeDefs,
+  resolvers,
+  context: authMiddleware,
+  persistedQueries: false,
+});
 
-
-// Create a new instance of an Apollo server with the GraphQL schema
 const startApolloServer = async () => {
   await server.start();
   server.applyMiddleware({ app });
@@ -45,5 +43,5 @@ const startApolloServer = async () => {
   });
 };
 
-// Call the async function to start the server
+// Start the Apollo Server
 startApolloServer();
