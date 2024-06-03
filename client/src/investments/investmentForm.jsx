@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { gql, useMutation } from '@apollo/client';
-import { useHistory } from 'react-router-dom';
 
 const ADD_INVESTMENT = gql`
   mutation AddInvestment($input: AddInvestmentInput!) {

@@ -2,7 +2,7 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import { ApolloProvider, ApolloClient, InMemoryCache, createHttpLink } from '@apollo/client';
-import App from './App'; // Assuming your App component manages your routes
+import App from './App';
 import './index.css';
 
 // Configure the Apollo Client
@@ -18,8 +18,8 @@ const client = new ApolloClient({
 // Configure React Router
 const router = createBrowserRouter([
   {
-    path: "/",
-    element: <App />, // App component or another component that serves as the entry point to your routes
+    path: "/*",
+    element: <App />, // App component that serves as the entry point to your routes
   },
   // Add more route objects here as needed
 ]);

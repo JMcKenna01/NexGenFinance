@@ -1,36 +1,27 @@
 import React, { useState } from 'react';
-import { useHistory } from 'react-router-dom';
-import { gql, useMutation } from '@apollo/client';
-import Navbar from '../components/layout/Navbar';
-import Footer from '../components/layout/Footer';
-import styles from './Login.module.css';
-import Button from '../ui/Button';
+import { useMutation, gql } from '@apollo/client';
+import { useNavigate } from 'react-router-dom';
+import './Login.module.css';
 
-const LOGIN_USER = gql`
-  mutation login($email: String!, $password: String!) {
+const LOGIN_MUTATION = gql`
+  mutation Login($email: String!, $password: String!) {
     login(email: $email, password: $password) {
+      userId
       token
-      user {
-        id
-        name
-        email
-      }
+      tokenExpiration
     }
   }
 `;
 
 const Login = () => {
-  const history = useHistory();
-  const [login, { error }] = useMutation(LOGIN_USER);
-  const [formState, setFormState] = useState({
-    email: '',
-    password: '',
-  });
+  const [formData, setFormData] = useState({ email: '', password: '' });
+  const [login, { data, loading, error }] = useMutation(LOGIN_MUTATION);
+  const navigate = useNavigate();
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setFormState({
-      ...formState,
+    setFormData({
+      ...formData,
       [name]: value,
     });
   };
@@ -38,49 +29,46 @@ const Login = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const { data } = await login({
-        variables: { ...formState },
-      });
-      localStorage.setItem('token', data.login.token);
-      history.push('/');
-    } catch (e) {
-      console.error(e);
+      const response = await login({ variables: formData });
+      if (response.data.login.token) {
+        localStorage.setItem('token', response.data.login.token);
+        navigate('/dashboard');
+      }
+    } catch (err) {
+      console.error('Error logging in:', err);
     }
   };
 
   return (
-    <div className={styles.login}>
-      <Navbar />
-      <div className={styles.loginContainer}>
-        <h1>Login</h1>
-        <form className={styles.loginForm} onSubmit={handleSubmit}>
-          <div className={styles.formGroup}>
-            <label htmlFor="email">Email</label>
-            <input
-              type="email"
-              id="email"
-              name="email"
-              value={formState.email}
-              onChange={handleChange}
-              required
-            />
-          </div>
-          <div className={styles.formGroup}>
-            <label htmlFor="password">Password</label>
-            <input
-              type="password"
-              id="password"
-              name="password"
-              value={formState.password}
-              onChange={handleChange}
-              required
-            />
-          </div>
-          {error && <p className={styles.error}>Failed to login. Please check your credentials.</p>}
-          <Button text="Login" />
-        </form>
-      </div>
-      <Footer />
+    <div className="Login">
+      <h2>Login</h2>
+      <form onSubmit={handleSubmit}>
+        <div>
+          <label>Email</label>
+          <input
+            type="email"
+            name="email"
+            value={formData.email}
+            onChange={handleChange}
+            required
+          />
+        </div>
+        <div>
+          <label>Password</label>
+          <input
+            type="password"
+            name="password"
+            value={formData.password}
+            onChange={handleChange}
+            required
+          />
+        </div>
+        <button type="submit" disabled={loading}>
+          {loading ? 'Logging in...' : 'Login'}
+        </button>
+        {error && <p className="error">{error.message}</p>}
+      </form>
+      {data && <p>Login successful!</p>}
     </div>
   );
 };

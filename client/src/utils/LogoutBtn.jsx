@@ -1,18 +1,17 @@
 import React from 'react';
-import { useHistory } from 'react-router-dom';
-import Button from '../ui/Button';
+import { useNavigate } from 'react-router-dom';
 
 const LogoutBtn = () => {
-  const history = useHistory();
+  const navigate = useNavigate();
 
   const handleLogout = () => {
-    // Clear the authentication token from local storage
     localStorage.removeItem('token');
-    // Redirect the user to the login page
-    history.push('/login');
+    navigate('/login');
   };
 
-  return <Button text="Logout" onClick={handleLogout} />;
+  return (
+    <button onClick={handleLogout}>Logout</button>
+  );
 };
 
 export default LogoutBtn;

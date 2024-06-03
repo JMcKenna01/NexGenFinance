@@ -5,7 +5,6 @@ import Button from '../ui/Button';
 import Navbar from '../components/layout/Navbar';
 import Footer from '../components/layout/Footer';
 
-
 const GET_HOME_DATA = gql`
   query GetHomeData {
     welcomeMessage
@@ -18,7 +17,7 @@ const GET_HOME_DATA = gql`
 `;
 
 const Home = () => {
-  const { loading, error, data } = useQuery(GET_HOME_DATA, { client });
+  const { loading, error, data } = useQuery(GET_HOME_DATA);
 
   if (loading) {
     return <div>Loading...</div>;

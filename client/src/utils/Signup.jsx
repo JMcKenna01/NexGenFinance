@@ -1,37 +1,26 @@
 import React, { useState } from 'react';
-import { useHistory } from 'react-router-dom';
-import { gql, useMutation } from '@apollo/client';
-import Navbar from '../components/layout/Navbar';
-import Footer from '../components/layout/Footer';
-import styles from './SignUp.module.css';
-import Button from '../ui/Button';
+import { useMutation, gql } from '@apollo/client';
+import { useNavigate } from 'react-router-dom';
+import './SignUp.module.css';
 
-const SIGNUP_USER = gql`
-  mutation signup($name: String!, $email: String!, $password: String!) {
-    signup(name: $name, email: $email, password: $password) {
-      token
-      user {
-        id
-        name
-        email
-      }
+const SIGNUP_MUTATION = gql`
+  mutation SignUp($username: String!, $email: String!, $password: String!) {
+    createUser(username: $username, email: $email, password: $password) {
+      id
+      email
     }
   }
 `;
 
 const SignUp = () => {
-  const history = useHistory();
-  const [signup, { error }] = useMutation(SIGNUP_USER);
-  const [formState, setFormState] = useState({
-    name: '',
-    email: '',
-    password: '',
-  });
+  const [formData, setFormData] = useState({ username: '', email: '', password: '' });
+  const [signUp, { loading, error }] = useMutation(SIGNUP_MUTATION);
+  const navigate = useNavigate();
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setFormState({
-      ...formState,
+    setFormData({
+      ...formData,
       [name]: value,
     });
   };
@@ -39,60 +28,52 @@ const SignUp = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const { data } = await signup({
-        variables: { ...formState },
-      });
-      localStorage.setItem('token', data.signup.token);
-      history.push('/');
-    } catch (e) {
-      console.error(e);
+      await signUp({ variables: formData });
+      navigate('/login');
+    } catch (err) {
+      console.error('Error signing up:', err);
     }
   };
 
   return (
-    <div className={styles.signup}>
-      <Navbar />
-      <div className={styles.signupContainer}>
-        <h1>Sign Up</h1>
-        <form className={styles.signupForm} onSubmit={handleSubmit}>
-          <div className={styles.formGroup}>
-            <label htmlFor="name">Name</label>
-            <input
-              type="text"
-              id="name"
-              name="name"
-              value={formState.name}
-              onChange={handleChange}
-              required
-            />
-          </div>
-          <div className={styles.formGroup}>
-            <label htmlFor="email">Email</label>
-            <input
-              type="email"
-              id="email"
-              name="email"
-              value={formState.email}
-              onChange={handleChange}
-              required
-            />
-          </div>
-          <div className={styles.formGroup}>
-            <label htmlFor="password">Password</label>
-            <input
-              type="password"
-              id="password"
-              name="password"
-              value={formState.password}
-              onChange={handleChange}
-              required
-            />
-          </div>
-          {error && <p className={styles.error}>Failed to sign up. Please try again.</p>}
-          <Button text="Sign Up" />
-        </form>
-      </div>
-      <Footer />
+    <div className="SignUp">
+      <h2>Sign Up</h2>
+      <form onSubmit={handleSubmit}>
+        <div>
+          <label>Username</label>
+          <input
+            type="text"
+            name="username"
+            value={formData.username}
+            onChange={handleChange}
+            required
+          />
+        </div>
+        <div>
+          <label>Email</label>
+          <input
+            type="email"
+            name="email"
+            value={formData.email}
+            onChange={handleChange}
+            required
+          />
+        </div>
+        <div>
+          <label>Password</label>
+          <input
+            type="password"
+            name="password"
+            value={formData.password}
+            onChange={handleChange}
+            required
+          />
+        </div>
+        <button type="submit" disabled={loading}>
+          {loading ? 'Signing up...' : 'Sign Up'}
+        </button>
+        {error && <p className="error">{error.message}</p>}
+      </form>
     </div>
   );
 };
