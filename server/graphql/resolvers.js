@@ -1,11 +1,11 @@
+const { User, Account, Budget, Investment, Transaction } = require('../models');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
-const { Account, Budget, Investment, Transaction, User } = require('../models');
 
 // Helper function to create a JWT token
 const createToken = (user, expiresIn) => {
   const { id, email, username } = user;
-  const secret = process.env.JWT_SECRET || 'fallbackSecret'; // Use the same fallback method
+  const secret = process.env.JWT_SECRET || 'fallbackSecret';
   return jwt.sign({ id, email, username }, secret, { expiresIn });
 };
 
@@ -13,6 +13,11 @@ const resolvers = {
   Query: {
     getUser: async (_, { id }) => {
       const user = await User.findById(id);
+      if (!user) throw new Error('User not found');
+      return user;
+    },
+    getUserByEmail: async (_, { email }) => {
+      const user = await User.findOne({ email });
       if (!user) throw new Error('User not found');
       return user;
     },
@@ -39,7 +44,7 @@ const resolvers = {
   },
   Mutation: {
     login: async (_, { email, password }) => {
-      console.log('Login attempt:', email); // Log email for the login attempt
+      console.log('Login attempt:', email);
 
       const user = await User.findOne({ email });
       if (!user) {
@@ -47,25 +52,52 @@ const resolvers = {
         throw new Error('User not found');
       }
 
-      const isValidPassword = await bcrypt.compare(password, user.password);
-      console.log('Password valid:', isValidPassword); // Log the result of password comparison
+      console.log('Entered password:', password);
+      console.log('Stored hashed password:', user.password);
 
-      if (!isValidPassword) {
-        console.log('Invalid password');
-        throw new Error('Invalid password');
+      try {
+        // Ensure the password and hashed password are strings
+        if (typeof password !== 'string' || typeof user.password !== 'string') {
+          throw new Error('Password or hashed password is not a string');
+        }
+
+        // Detailed logging for bcrypt comparison
+        console.log('Before bcrypt compare');
+        bcrypt.compare(password, user.password, (err, isMatch) => {
+          if (err) {
+            console.error('Error during bcrypt comparison:', err);
+            throw new Error('Error during password comparison');
+          }
+          console.log('Password valid:', isMatch);
+
+          if (!isMatch) {
+            console.log('Invalid password');
+            throw new Error('Invalid password');
+          }
+
+          const token = createToken(user, '2h');
+          console.log('Generated JWT:', token);
+
+          return {
+            userId: user.id,
+            token,
+            tokenExpiration: 1
+          };
+        });
+      } catch (error) {
+        console.error('Error during password comparison:', error);
+        throw new Error('Error during password comparison');
       }
-
-      return {
-        userId: user.id,
-        token: createToken(user, '2h'),
-        tokenExpiration: 1
-      };
     },
     createUser: async (_, { username, email, password }) => {
       const existingUser = await User.findOne({ email });
       if (existingUser) throw new Error('User already exists');
 
+      console.log('Creating user:', { username, email });
+
       const hashedPassword = await bcrypt.hash(password, 12);
+      console.log('Hashed password:', hashedPassword);
+
       const newUser = new User({
         username,
         email,
@@ -73,7 +105,7 @@ const resolvers = {
       });
 
       const result = await newUser.save();
-      console.log('User created:', result); // Log the created user
+      console.log('User created:', result);
       return result;
     },
     deleteUser: async (_, { id }) => {

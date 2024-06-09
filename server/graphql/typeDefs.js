@@ -54,6 +54,7 @@ const typeDefs = gql`
 
   type Query {
     getUser(id: ID!): User
+    getUserByEmail(email: String!): User  # Added query to get user by email
     getTransaction(id: ID!): Transaction
     getAccount(id: ID!): Account
     getBudget(id: ID!): Budget

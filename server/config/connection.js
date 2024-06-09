@@ -1,8 +1,10 @@
-require('dotenv').config({ path: './.env' });
+const path = require('path'); // Import path module
+require('dotenv').config({ path: path.resolve(__dirname, '../../.env') });
+
 const mongoose = require('mongoose');
 
 const mongoURI = process.env.MONGO_URI;
-console.log('Connecting to MongoDB URI:', mongoURI); 
+console.log('Connecting to MongoDB URI:', mongoURI);
 
 mongoose.connect(mongoURI, {
   useNewUrlParser: true,

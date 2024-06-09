@@ -15,6 +15,8 @@ app.use(cors());
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 
+console.log('JWT_SECRET:', process.env.JWT_SECRET); // Verify the secret is loaded
+
 // if we're in production, serve client/dist as static assets
 if (process.env.NODE_ENV === 'production') {
   app.use(express.static(path.join(__dirname, '../client/dist')));
