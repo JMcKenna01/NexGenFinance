@@ -1,9 +1,9 @@
 import React from 'react';
 import { useQuery, gql } from '@apollo/client';
 import styles from './Home.module.css';
-import Button from '../ui/Button';
-import Navbar from '../components/layout/Navbar';
-import Footer from '../components/layout/Footer';
+import Button from '../components/ui/Button';
+import Navbar from '../components/ui/Navbar';
+import Footer from '../components/ui/Footer';
 
 const GET_HOME_DATA = gql`
   query GetHomeData {

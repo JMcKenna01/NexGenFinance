@@ -3,20 +3,21 @@ import { Routes, Route } from 'react-router-dom';
 import Home from './pages/Home';
 import Profile from './pages/Profile';
 import About from './pages/About';
-import Login from './utils/login';
-import SignUp from './utils/Signup';
+import Login from './pages/Login';
+import SignUp from './pages/Signup';
 import TransactionsPage from './pages/TransactionsPage';
 import GoalsManager from './pages/GoalsManager';
 import InvestmentDetails from './pages/InvestmentDetails';
 import InvestmentList from './investments/InvestmentList';
-import InvestmentForm from './investments/investmentForm';
+import InvestmentForm from './components/forms/InvestmentForm';
 import BudgetManager from './pages/BudgetManager';
 import Dashboard from './pages/Dashboard';
 import Contact from './pages/Contact';
 import LearningResources from './learning/LearningResources';
-import Navbar from './components/layout/Navbar';
-import Footer from './components/layout/Footer';
-import Sidebar from './components/layout/Sidebar';
+import Navbar from './components/ui/Navbar';
+import Footer from './components/ui/Footer';
+import Sidebar from './components/ui/Sidebar';
+import LogoutBtn from './components/ui/LogoutBtn';
 import './App.css';
 
 function App() {

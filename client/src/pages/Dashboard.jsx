@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
-import Alert from '../ui/Alert';
-import Navbar from '../components/layout/Navbar';
-import Footer from '../components/layout/Footer';
-import Button from '../ui/Button';
+import Alert from '../components/ui/Alert';
+import Navbar from '../components/ui/Navbar';
+import Footer from '../components/ui/Footer';
+import Button from '../components/ui/Button';
 import styles from './Dashboard.module.css';
 
 const Dashboard = () => {

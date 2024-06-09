@@ -1,8 +1,8 @@
 import React from 'react';
 import { useQuery, gql } from '@apollo/client';
 import styles from './Profile.module.css';
-import Navbar from '../components/layout/Navbar';
-import Footer from '../components/layout/Footer';
+import Navbar from '../components/ui/Navbar';
+import Footer from '../components/ui/Footer';
 
 const GET_PROFILE_DATA = gql`
   query GetProfileData {
