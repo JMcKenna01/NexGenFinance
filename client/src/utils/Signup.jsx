@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { useMutation, gql } from '@apollo/client';
 import { useNavigate } from 'react-router-dom';
 import './SignUp.module.css';
@@ -67,6 +67,7 @@ const SignUp = () => {
             value={formData.password}
             onChange={handleChange}
             required
+            minLength={8} // Ensure password meets minimum length requirement
           />
         </div>
         <button type="submit" disabled={loading}>
