@@ -1,12 +1,27 @@
 const bcrypt = require('bcryptjs');
 
 const password = 'password123';
-const hashedPassword = '$2a$10$sYuIaeCb2Nry8foj7P4qSudTGcYZGOit30ee8lVhgzQd/kA8Vi9mK'; // Use the hash from your logs
 
-bcrypt.compare(password, hashedPassword, (err, isMatch) => {
+// Generate a new hash for the password
+bcrypt.genSalt(10, (err, salt) => {
   if (err) {
-    console.error('Error during manual password comparison:', err);
-  } else {
-    console.log('Manual password comparison result:', isMatch);
+    console.error('Error generating salt:', err);
+    return;
   }
+  bcrypt.hash(password, salt, (err, newHashedPassword) => {
+    if (err) {
+      console.error('Error hashing password:', err);
+      return;
+    }
+    console.log('New hashed password:', newHashedPassword);
+
+    // Compare the plain text password with the new hash
+    bcrypt.compare(password, newHashedPassword, (err, isMatch) => {
+      if (err) {
+        console.error('Error during password comparison:', err);
+      } else {
+        console.log('Password comparison result:', isMatch);
+      }
+    });
+  });
 });
