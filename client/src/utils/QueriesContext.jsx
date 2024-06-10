@@ -1,8 +1,8 @@
 import React, { createContext, useContext } from 'react';
 import { useMutation } from '@apollo/client';
 import {
-  LOGIN,
-  CREATE_USER,
+  LOGIN_USER,
+  ADD_USER,
   DELETE_USER,
   UPDATE_USER,
   CREATE_TRANSACTION,
@@ -16,8 +16,7 @@ import {
   DELETE_BUDGET,
   CREATE_INVESTMENT,
   UPDATE_INVESTMENT,
-  DELETE_INVESTMENT,
-  SIGNUP_USER
+  DELETE_INVESTMENT
 } from './mutations';
 import auth from './auth';
 
@@ -26,8 +25,8 @@ const QueriesContext = createContext();
 export const useQueriesContext = () => useContext(QueriesContext);
 
 export const QueriesProvider = ({ children }) => {
-  const [loginUser, { error: loginUserError }] = useMutation(LOGIN);
-  const [createUser, { error: createUserError }] = useMutation(CREATE_USER);
+  const [loginUser, { error: loginUserError }] = useMutation(LOGIN_USER);
+  const [addUser, { error: addUserError }] = useMutation(ADD_USER);
   const [updateUser, { error: updateUserError }] = useMutation(UPDATE_USER);
   const [deleteUser, { error: deleteUserError }] = useMutation(DELETE_USER);
   const [createTransaction, { error: createTransactionError }] = useMutation(CREATE_TRANSACTION);
@@ -42,7 +41,6 @@ export const QueriesProvider = ({ children }) => {
   const [createInvestment, { error: createInvestmentError }] = useMutation(CREATE_INVESTMENT);
   const [updateInvestment, { error: updateInvestmentError }] = useMutation(UPDATE_INVESTMENT);
   const [deleteInvestment, { error: deleteInvestmentError }] = useMutation(DELETE_INVESTMENT);
-  const [signUp, { error: signUpError }] = useMutation(SIGNUP_USER);
 
   const validateEmail = (email) => {
     const re = /\S+@\S+\.\S+/;
@@ -60,7 +58,7 @@ export const QueriesProvider = ({ children }) => {
   const contextValue = {
     mutations: {
       loginUser,
-      createUser,
+      addUser,
       updateUser,
       deleteUser,
       createTransaction,
@@ -74,12 +72,11 @@ export const QueriesProvider = ({ children }) => {
       deleteBudget,
       createInvestment,
       updateInvestment,
-      deleteInvestment,
-      signUp
+      deleteInvestment
     },
     errors: {
       loginUserError,
-      createUserError,
+      addUserError,
       updateUserError,
       deleteUserError,
       createTransactionError,
@@ -93,8 +90,7 @@ export const QueriesProvider = ({ children }) => {
       deleteBudgetError,
       createInvestmentError,
       updateInvestmentError,
-      deleteInvestmentError,
-      signUpError
+      deleteInvestmentError
     },
     validateEmail,
     classNames,

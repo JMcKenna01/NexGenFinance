@@ -44,7 +44,6 @@ export const GET_TRANSACTIONS = gql`
   }
 `;
 
-
 export const GET_ACCOUNT = gql`
   query GetAccount($id: ID!) {
     getAccount(id: $id) {

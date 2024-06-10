@@ -94,6 +94,7 @@ export default function LoginForm() {
               {showRequired.email && !form.email.address && <RequiredField />}
             </section>
           </section>
+
           <section className="sm:col-span-2">
             <label htmlFor="password" className="block text-sm font-semibold leading-6 text-gray-900">
               Password
@@ -111,14 +112,18 @@ export default function LoginForm() {
               {showRequired.password && !form.password && <RequiredField />}
             </section>
           </section>
+
           <section className="mt-10 sm:col-span-2 submit p-2">
             <button
               type="submit"
               className="rounded block p-3.5 text-center text-sm text-grey-900 font-semibold shadow-sm"
-            >Login</button>
+            >
+              Login
+            </button>
           </section>
         </section>
       </form>
+
       {errorMessage && (
         <section className="m-3">
           <p className="error-text">{errorMessage}</p>
@@ -127,4 +132,3 @@ export default function LoginForm() {
     </>
   );
 }
-

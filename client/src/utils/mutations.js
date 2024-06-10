@@ -1,7 +1,7 @@
 import { gql } from '@apollo/client';
 
-export const LOGIN = gql`
-  mutation Login($email: String!, $password: String!) {
+export const LOGIN_USER = gql`
+  mutation LoginUser($email: String!, $password: String!) {
     login(email: $email, password: $password) {
       userId
       token
@@ -10,9 +10,9 @@ export const LOGIN = gql`
   }
 `;
 
-export const CREATE_USER = gql`
-  mutation CreateUser($username: String!, $email: String!, $password: String!) {
-    createUser(username: $username, email: $email, password: $password) {
+export const ADD_USER = gql`
+  mutation AddUser($username: String!, $email: String!, $password: String!) {
+    addUser(username: $username, email: $email, password: $password) {
       id
       username
       email
@@ -29,8 +29,8 @@ export const DELETE_USER = gql`
 `;
 
 export const UPDATE_USER = gql`
-  mutation UpdateUser($id: ID!, $username: String, $email: String, $currentPassword: String, $newPassword: String) {
-    updateUser(id: $id, username: $username, email: $email, currentPassword: $currentPassword, newPassword: $newPassword) {
+  mutation UpdateUser($id: ID!, $username: String, $email: String) {
+    updateUser(id: $id, username: $username, email: $email) {
       id
       username
       email
@@ -160,14 +160,6 @@ export const DELETE_INVESTMENT = gql`
   mutation DeleteInvestment($id: ID!) {
     deleteInvestment(id: $id) {
       id
-    }
-  }
-`;
-
-export const SIGNUP_USER = gql`
-  mutation SignUp($username: String!, $email: String!, $password: String!) {
-    signUp(username: $username, email: $email, password: $password) {
-      token
     }
   }
 `;
