@@ -18,6 +18,7 @@ const typeDefs = gql`
     amount: Float!
     date: String!
     account: Account
+    user: User
   }
 
   type Account {
@@ -26,6 +27,7 @@ const typeDefs = gql`
     accountType: String!
     balance: Float!
     transactions: [Transaction]
+    user: User
   }
 
   type Budget {
@@ -33,7 +35,7 @@ const typeDefs = gql`
     category: String!
     limit: Float!
     currentSpend: Float!
-    userId: ID!
+    user: User
   }
 
   type Investment {
@@ -43,7 +45,7 @@ const typeDefs = gql`
     date: String!
     firm: String
     broker: String
-    userId: ID!
+    user: User
   }
 
   type AuthData {
@@ -54,7 +56,7 @@ const typeDefs = gql`
 
   type Query {
     getUser(id: ID!): User
-    getUserByEmail(email: String!): User  # Added query to get user by email
+    getUserByEmail(email: String!): User
     getTransaction(id: ID!): Transaction
     getAccount(id: ID!): Account
     getBudget(id: ID!): Budget
@@ -63,6 +65,7 @@ const typeDefs = gql`
 
   type Mutation {
     login(email: String!, password: String!): AuthData
+    signUp(username: String!, email: String!, password: String!): AuthData
     createUser(username: String!, email: String!, password: String!): User
     updateUser(id: ID!, username: String, email: String, currentPassword: String, newPassword: String): User
     deleteUser(id: ID!): User

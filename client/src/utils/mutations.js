@@ -39,8 +39,8 @@ export const UPDATE_USER = gql`
 `;
 
 export const CREATE_TRANSACTION = gql`
-  mutation CreateTransaction($userId: ID!, $type: String!, $category: String, $amount: Float!, $date: String!, $accountId: ID!) {
-    createTransaction(userId: $userId, type: $type, category: $category, amount: $amount, date: $date, accountId: $accountId) {
+  mutation CreateTransaction($type: String!, $category: String, $amount: Float!, $date: String!, $accountId: ID!) {
+    createTransaction(type: $type, category: $category, amount: $amount, date: $date, accountId: $accountId) {
       id
       type
       category
@@ -160,6 +160,14 @@ export const DELETE_INVESTMENT = gql`
   mutation DeleteInvestment($id: ID!) {
     deleteInvestment(id: $id) {
       id
+    }
+  }
+`;
+
+export const SIGNUP_USER = gql`
+  mutation SignUp($username: String!, $email: String!, $password: String!) {
+    signUp(username: $username, email: $email, password: $password) {
+      token
     }
   }
 `;

@@ -1,74 +1,17 @@
-import React, { useState } from 'react';
-import { useMutation, gql } from '@apollo/client';
-import { useNavigate } from 'react-router-dom';
-import './Login.module.css';
-
-const LOGIN_MUTATION = gql`
-  mutation Login($email: String!, $password: String!) {
-    login(email: $email, password: $password) {
-      userId
-      token
-      tokenExpiration
-    }
-  }
-`;
+import React from 'react';
+import LoginForm from '../components/forms/loginForm';
+import './Login.module.css'; // Ensure this matches your actual CSS file path if it exists
 
 const Login = () => {
-  const [formData, setFormData] = useState({ email: '', password: '' });
-  const [login, { data, loading, error }] = useMutation(LOGIN_MUTATION);
-  const navigate = useNavigate();
-
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData({
-      ...formData,
-      [name]: value,
-    });
-  };
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    try {
-      const response = await login({ variables: formData });
-      if (response.data.login.token) {
-        localStorage.setItem('token', response.data.login.token);
-        navigate('/dashboard');
-      }
-    } catch (err) {
-      console.error('Error logging in:', err);
-    }
+  const handleLogin = (credentials) => {
+    console.log('Login credentials:', credentials);
+    // Implement login logic here, e.g., call an API to authenticate the user
   };
 
   return (
-    <div className="Login">
-      <h2>Login</h2>
-      <form onSubmit={handleSubmit}>
-        <div>
-          <label>Email</label>
-          <input
-            type="email"
-            name="email"
-            value={formData.email}
-            onChange={handleChange}
-            required
-          />
-        </div>
-        <div>
-          <label>Password</label>
-          <input
-            type="password"
-            name="password"
-            value={formData.password}
-            onChange={handleChange}
-            required
-          />
-        </div>
-        <button type="submit" disabled={loading}>
-          {loading ? 'Logging in...' : 'Login'}
-        </button>
-        {error && <p className="error">{error.message}</p>}
-      </form>
-      {data && <p>Login successful!</p>}
+    <div className="login-page">
+      <h1>Login Page</h1>
+      <LoginForm onSubmit={handleLogin} />
     </div>
   );
 };

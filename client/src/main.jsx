@@ -2,6 +2,7 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import { ApolloProvider, ApolloClient, InMemoryCache, createHttpLink } from '@apollo/client';
+import { QueriesProvider } from './utils/QueriesContext'; // Import the QueriesProvider
 import App from './App';
 import './index.css';
 
@@ -28,7 +29,9 @@ const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
     <ApolloProvider client={client}>
-      <RouterProvider router={router} />
+      <QueriesProvider> {/* Wrap with QueriesProvider */}
+        <RouterProvider router={router} />
+      </QueriesProvider>
     </ApolloProvider>
   </React.StrictMode>
 );

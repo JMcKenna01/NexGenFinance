@@ -9,6 +9,8 @@ const createToken = (user, expiresIn) => {
   return jwt.sign({ id, email, username }, secret, { expiresIn });
 };
 
+const saltRounds = 12;
+
 const resolvers = {
   Query: {
     getUser: async (_, { id }) => {
@@ -43,61 +45,42 @@ const resolvers = {
     },
   },
   Mutation: {
-    login: async (_, { email, password }) => {
-      console.log('Login attempt:', email);
+    signUp: async (_, { username, email, password }) => {
+      const existingUser = await User.findOne({ email });
+      if (existingUser) {
+        throw new Error('User already exists');
+      }
 
+      const hashedPassword = await bcrypt.hash(password, saltRounds);
+      const newUser = new User({ username, email, password: hashedPassword });
+      await newUser.save();
+
+      const token = createToken(newUser, '2h');
+      return { token };
+    },
+    login: async (_, { email, password }) => {
       const user = await User.findOne({ email });
       if (!user) {
-        console.log('User not found');
         throw new Error('User not found');
       }
 
-      console.log('Entered password:', password);
-      console.log('Stored hashed password:', user.password);
-
-      try {
-        // Ensure the password and hashed password are strings
-        if (typeof password !== 'string' || typeof user.password !== 'string') {
-          throw new Error('Password or hashed password is not a string');
-        }
-
-        // Detailed logging for bcrypt comparison
-        console.log('Before bcrypt compare');
-        bcrypt.compare(password, user.password, (err, isMatch) => {
-          if (err) {
-            console.error('Error during bcrypt comparison:', err);
-            throw new Error('Error during password comparison');
-          }
-          console.log('Password valid:', isMatch);
-
-          if (!isMatch) {
-            console.log('Invalid password');
-            throw new Error('Invalid password');
-          }
-
-          const token = createToken(user, '2h');
-          console.log('Generated JWT:', token);
-
-          return {
-            userId: user.id,
-            token,
-            tokenExpiration: 1
-          };
-        });
-      } catch (error) {
-        console.error('Error during password comparison:', error);
-        throw new Error('Error during password comparison');
+      const isValidPassword = await bcrypt.compare(password, user.password);
+      if (!isValidPassword) {
+        throw new Error('Invalid password');
       }
+
+      const token = createToken(user, '2h');
+      return {
+        userId: user.id,
+        token,
+        tokenExpiration: 2
+      };
     },
     createUser: async (_, { username, email, password }) => {
       const existingUser = await User.findOne({ email });
       if (existingUser) throw new Error('User already exists');
 
-      console.log('Creating user:', { username, email });
-
-      const hashedPassword = await bcrypt.hash(password, 12);
-      console.log('Hashed password:', hashedPassword);
-
+      const hashedPassword = await bcrypt.hash(password, saltRounds);
       const newUser = new User({
         username,
         email,
@@ -105,7 +88,6 @@ const resolvers = {
       });
 
       const result = await newUser.save();
-      console.log('User created:', result);
       return result;
     },
     deleteUser: async (_, { id }) => {
@@ -120,7 +102,7 @@ const resolvers = {
         throw new Error('Current password is incorrect');
       }
       if (newPassword) {
-        const hashedPassword = await bcrypt.hash(newPassword, 12);
+        const hashedPassword = await bcrypt.hash(newPassword, saltRounds);
         user.password = hashedPassword;
       }
       if (username) user.username = username;
@@ -183,11 +165,12 @@ const resolvers = {
       if (!deletedAccount) throw new Error('Account not found');
       return deletedAccount;
     },
-    createBudget: async (_, { category, limit, currentSpend }) => {
+    createBudget: async (_, { category, limit, currentSpend, userId }) => {
       const newBudget = new Budget({
         category,
         limit,
-        currentSpend
+        currentSpend,
+        user: userId
       });
       const savedBudget = await newBudget.save();
       return savedBudget;
@@ -206,13 +189,14 @@ const resolvers = {
       if (!deletedBudget) throw new Error('Budget not found');
       return deletedBudget;
     },
-    createInvestment: async (_, { type, amount, date, firm, broker }) => {
+    createInvestment: async (_, { type, amount, date, firm, broker, userId }) => {
       const newInvestment = new Investment({
         type,
         amount,
         date,
         firm,
-        broker
+        broker,
+        user: userId
       });
       const savedInvestment = await newInvestment.save();
       return savedInvestment;

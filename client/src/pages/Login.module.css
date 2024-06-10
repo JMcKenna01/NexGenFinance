@@ -1,51 +1,9 @@
-.login {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-  }
-  
-  .loginContainer {
-    max-width: 400px;
-    width: 100%;
-    margin: 20px;
-    padding: 20px;
-    background: #f9f9f9;
-    border-radius: 10px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  }
-  
-  .login h1 {
-    font-size: 2rem;
-    margin-bottom: 1rem;
-  }
-  
-  .loginForm {
-    display: flex;
-    flex-direction: column;
-  }
-  
-  .formGroup {
-    margin-bottom: 1rem;
-  }
-  
-  .formGroup label {
-    display: block;
-    font-size: 1rem;
-    margin-bottom: 0.5rem;
-  }
-  
-  .formGroup input {
-    width: 100%;
-    padding: 0.5rem;
-    font-size: 1rem;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-  }
-  
-  .error {
-    color: red;
-    font-size: 0.875rem;
-    margin-bottom: 1rem;
-  }
-  
+.login-page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+h1 {
+  margin-bottom: 20px;
+}
