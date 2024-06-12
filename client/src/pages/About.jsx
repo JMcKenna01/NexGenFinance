@@ -1,12 +1,9 @@
 import React from 'react';
-import Navbar from '../components/ui/Navbar';
-import Footer from '../components/ui/Footer';
 import styles from './About.module.css';
 
 const About = () => {
   return (
     <div className={styles.about}>
-      <Navbar />
       <div className={styles.aboutContainer}>
         <h1>About NexGenFinance</h1>
         <p>
@@ -24,7 +21,6 @@ const About = () => {
           At NexGenFinance, we believe that everyone should have the tools and knowledge to manage their finances effectively. Our goal is to empower users to make informed financial decisions and achieve financial freedom.
         </p>
       </div>
-      <Footer />
     </div>
   );
 };

@@ -43,27 +43,22 @@
 .navLink:hover {
   border: 1px solid #fff;
   background-color: rgba(255, 255, 255, 0.1);
-  outline: 2px solid rgba(255, 255, 255, 0.5); /* Adjust hover outline color */
 }
 
-.navLink:focus {
+.navLink:focus,
+.navLink:active,
+.navLink:focus-visible {
+  outline: none; /* Remove default focus outline */
   border: 1px solid #fff;
   background-color: rgba(255, 255, 255, 0.1);
-  outline: 2px solid white; /* Change focus outline to white */
-}
-
-.navLink:active {
-  outline: 2px solid white; /* Change focus outline to white */
-  box-shadow: none; /* Remove focus box shadow */
-  border: 1px solid #fff;
-  background-color: rgba(255, 255, 255, 0.1);
+  box-shadow: none; /* Remove box shadow */
 }
 
 .activeLink {
   border: 1px solid #007bff;
-  background-color: rgba(0, 123, 255, 0.1);
-  outline: 2px solid white; /* Change focus outline to white */
-  box-shadow: none; /* Remove focus box shadow */
+  background-color: rgba(0, 123, 255, 0.3); /* Adjusted the active background color */
+  outline: none; /* Remove default focus outline */
+  box-shadow: none; /* Remove box shadow */
 }
 
 .bottomLinks {

@@ -17,7 +17,6 @@ import LearningResources from './learning/LearningResources';
 import Navbar from './components/ui/Navbar';
 import Footer from './components/ui/Footer';
 import Sidebar from './components/ui/Sidebar';
-import LogoutBtn from './components/ui/LogoutBtn';
 import './App.css';
 
 function App() {
@@ -42,7 +41,6 @@ function App() {
             <Route path="/budget" element={<BudgetManager />} />
             <Route path="/contact" element={<Contact />} />
             <Route path="/learning-resources" element={<LearningResources />} />
-            {/* Add other routes here */}
           </Routes>
         </div>
       </div>

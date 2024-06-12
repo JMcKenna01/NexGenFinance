@@ -1,8 +1,8 @@
 #root {
   max-width: 1280px;
   margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
+  padding: 0; /* Remove existing padding */
+  text-align: left; /* Adjust text alignment */
 }
 
 .logo {
@@ -59,10 +59,21 @@
   flex: 1;
   margin-left: 250px; /* Adjust this value based on your sidebar width */
   padding: 20px;
+  overflow-y: auto;
+  transition: margin-left 0.3s ease; /* Smooth transition for sidebar toggle */
 }
 
-/* Ensure the content within the root does not overlap with the sidebar */
-#root {
-  padding: 0; /* Remove existing padding */
-  text-align: left; /* Adjust text alignment */
+.sidebarHidden .content {
+  margin-left: 0; /* Adjust this value when the sidebar is hidden */
+}
+
+footer {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  background-color: #333;
+  color: white;
+  padding: 20px 0;
+  text-align: center; /* Center the text in the footer */
+  z-index: 1000; /* Ensure the footer is above other elements */
 }
