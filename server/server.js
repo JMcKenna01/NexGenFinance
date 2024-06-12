@@ -7,6 +7,7 @@ const { authMiddleware } = require('./utils/auth');
 const { typeDefs, resolvers } = require('./graphql');
 const db = require('./config/connection');
 const cors = require('cors');
+const nodemailer = require('nodemailer');
 
 const PORT = process.env.PORT || 3001;
 const app = express();
@@ -44,6 +45,42 @@ const startApolloServer = async () => {
     });
   });
 };
+
+// Email endpoint
+app.post('/send-email', (req, res) => {
+  const { name, email, message } = req.body;
+
+  // Validate email format
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  if (!emailRegex.test(email)) {
+    return res.status(400).json({ error: 'Invalid email format' });
+  }
+
+  const transporter = nodemailer.createTransport({
+    service: 'gmail',
+    auth: {
+      user: process.env.EMAIL_USER, 
+      pass: process.env.EMAIL_PASS  
+    }
+  });
+
+  const mailOptions = {
+    from: email,
+    to: 'jmckenna2026@gmail.com',
+    subject: `Message from ${name}`,
+    text: message
+  };
+
+  transporter.sendMail(mailOptions, (error, info) => {
+    if (error) {
+      console.log(error);
+      return res.status(500).json({ error: 'Failed to send email' });
+    } else {
+      console.log('Email sent: ' + info.response);
+      return res.status(200).json({ message: 'Message sent successfully' });
+    }
+  });
+});
 
 // Start the Apollo Server
 startApolloServer();

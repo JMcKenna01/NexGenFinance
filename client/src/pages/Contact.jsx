@@ -1,6 +1,4 @@
 import React, { useState } from 'react';
-import Navbar from '../components/ui/Navbar';
-import Footer from '../components/ui/Footer';
 import styles from './Contact.module.css';
 
 const Contact = () => {
@@ -9,6 +7,8 @@ const Contact = () => {
     email: '',
     message: ''
   });
+  const [errorMessage, setErrorMessage] = useState('');
+  const [successMessage, setSuccessMessage] = useState('');
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -18,16 +18,33 @@ const Contact = () => {
     });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // Handle form submission logic here
-    alert('Message sent!');
-    setFormState({ name: '', email: '', message: '' });
+
+    // Reset messages
+    setErrorMessage('');
+    setSuccessMessage('');
+
+    const response = await fetch('http://localhost:5000/send-email', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(formState)
+    });
+
+    const result = await response.json();
+
+    if (response.status === 200) {
+      setSuccessMessage('Message sent successfully!');
+      setFormState({ name: '', email: '', message: '' });
+    } else {
+      setErrorMessage(result.error || 'An error occurred. Please try again.');
+    }
   };
 
   return (
     <div className={styles.contact}>
-      <Navbar />
       <div className={styles.contactContainer}>
         <h1>Contact Us</h1>
         <form className={styles.contactForm} onSubmit={handleSubmit}>
@@ -65,8 +82,9 @@ const Contact = () => {
           </div>
           <button type="submit">Send Message</button>
         </form>
+        {errorMessage && <p className={styles.error}>{errorMessage}</p>}
+        {successMessage && <p className={styles.success}>{successMessage}</p>}
       </div>
-      <Footer />
     </div>
   );
 };
