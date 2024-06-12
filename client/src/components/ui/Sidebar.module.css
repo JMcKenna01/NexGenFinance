@@ -1,66 +1,92 @@
 .sidebar {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    width: 250px;
-    height: 100vh;
-    background-color: #333;
-    color: white;
-    position: fixed;
-    top: 0;
-    left: 0;
-    padding: 20px;
-  }
-  
-  .logo {
-    font-size: 1.5rem;
-    margin-bottom: 20px;
-  }
-  
-  .logoLink {
-    color: white;
-    text-decoration: none;
-  }
-  
-  .nav {
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
-  }
-  
-  .navLink {
-    color: white;
-    text-decoration: none;
-    font-size: 1rem;
-  }
-  
-  .navLink:hover,
-  .activeLink {
-    text-decoration: underline;
-  }
-  
-  .user {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin-top: auto;
-  }
-  
-  .userInfo {
-    margin-bottom: 10px;
-  }
-  
-  .userName {
-    font-size: 1rem;
-  }
-  
-  .logoutLink {
-    color: #ff4d4d;
-    text-decoration: none;
-    font-size: 1rem;
-  }
-  
-  .logoutLink:hover {
-    text-decoration: underline;
-  }
-  
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 250px;
+  height: 100vh;
+  background-color: #333;
+  color: white;
+  position: fixed;
+  top: 0;
+  left: 0;
+  padding: 20px;
+  transition: transform 0.3s ease; /* Add transition for hide/show effect */
+}
+
+.profileSection {
+  margin-bottom: 20px;
+}
+
+.profileEmail {
+  font-size: 1rem;
+  color: #fff;
+  margin-bottom: 10px;
+}
+
+.navSection {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.navLink {
+  color: white;
+  text-decoration: none;
+  font-size: 1rem;
+  padding: 10px;
+  border: 1px solid transparent;
+  outline: none; /* Remove default focus outline */
+  -webkit-tap-highlight-color: transparent; /* Remove tap highlight on mobile */
+  box-shadow: none; /* Remove box shadow */
+}
+
+.navLink:hover {
+  border: 1px solid #fff;
+  background-color: rgba(255, 255, 255, 0.1);
+  outline: 2px solid rgba(255, 255, 255, 0.5); /* Adjust hover outline color */
+}
+
+.navLink:focus {
+  border: 1px solid #fff;
+  background-color: rgba(255, 255, 255, 0.1);
+  outline: 2px solid white; /* Change focus outline to white */
+}
+
+.navLink:active {
+  outline: 2px solid white; /* Change focus outline to white */
+  box-shadow: none; /* Remove focus box shadow */
+  border: 1px solid #fff;
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+.activeLink {
+  border: 1px solid #007bff;
+  background-color: rgba(0, 123, 255, 0.1);
+  outline: 2px solid white; /* Change focus outline to white */
+  box-shadow: none; /* Remove focus box shadow */
+}
+
+.bottomLinks {
+  margin-top: auto;
+}
+
+.hidden {
+  transform: translateX(-100%);
+}
+
+.toggleButton {
+  position: fixed;
+  top: 20px;
+  left: 260px;
+  z-index: 1000;
+  background: none;
+  color: white;
+  border: none;
+  cursor: pointer;
+  font-size: 20px;
+  transition: left 0.3s ease; /* Transition for smooth movement */
+}
+
+.hiddenButton {
+  left: 10px; /* Adjust the button position when the sidebar is hidden */
+}

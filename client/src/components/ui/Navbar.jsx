@@ -19,10 +19,6 @@ const Navbar = () => {
         <h1 className={styles.title}>NexGenFinance</h1>
       </div>
       <nav className={styles.nav}>
-        <Link to="/">Home</Link>
-        <Link to="/about">About</Link>
-        <Link to="/profile">Profile</Link>
-        <Link to="/contact">Contact</Link>
         {isAuthenticated ? (
           <LogoutBtn onLogout={handleLogout} />
         ) : (
