@@ -25,9 +25,12 @@ a:hover {
 body {
   margin: 0;
   display: flex;
-  place-items: center;
-  min-width: 320px;
+  flex-direction: column; /* Ensure column layout to place footer at the bottom */
   min-height: 100vh;
+}
+
+main {
+  flex: 1; /* Allow main content to take up remaining space */
 }
 
 h1 {
@@ -66,4 +69,3 @@ button:focus-visible {
     background-color: #f9f9f9;
   }
 }
-
