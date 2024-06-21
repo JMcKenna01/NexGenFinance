@@ -32,17 +32,17 @@ const typeDefs = gql`
 
   type Budget {
     id: ID!
-    category: String!
-    limit: Float!
+    category: String
+    limit: Float
     currentSpend: Float!
     user: User
   }
 
   type Investment {
     id: ID!
-    type: String!
-    amount: Float!
-    date: String!
+    type: String
+    amount: Float
+    date: String
     firm: String
     broker: String
     user: User
@@ -54,6 +54,17 @@ const typeDefs = gql`
     tokenExpiration: Int!
   }
 
+  type UserStatistics {
+    totalIncome: Float!
+    totalExpenses: Float!
+    totalInvestments: Float!
+  }
+
+  type FinancialGoal {
+    goal: String!
+    progress: Int!
+  }
+
   type Query {
     getUser(id: ID!): User
     getUserByEmail(email: String!): User
@@ -61,6 +72,11 @@ const typeDefs = gql`
     getAccount(id: ID!): Account
     getBudget(id: ID!): Budget
     getInvestment(id: ID!): Investment
+    welcomeMessage: String
+    userStatistics: UserStatistics
+    budgets: [Budget]
+    financialGoals: [FinancialGoal]
+    investments: [Investment]
   }
 
   type Mutation {
@@ -80,6 +96,7 @@ const typeDefs = gql`
     createInvestment(type: String!, amount: Float!, date: String!, firm: String, broker: String, userId: ID!): Investment
     updateInvestment(id: ID!, type: String!, amount: Float!, date: String!, firm: String, broker: String): Investment
     deleteInvestment(id: ID!): Investment
+    sendEmail(name: String!, email: String!, message: String!): Boolean
   }
 `;
 
