@@ -80,3 +80,28 @@ export const GET_INVESTMENT = gql`
     }
   }
 `;
+
+const GET_HOME_DATA = gql`
+  query GetHomeData {
+    welcomeMessage
+    userStatistics {
+      totalIncome
+      totalExpenses
+      totalInvestments
+    }
+    budgets {
+      category
+      limit
+      currentSpend
+    }
+    financialGoals {
+      goal
+      progress
+    }
+    investments {
+      type
+      amount
+      date
+    }
+  }
+`;

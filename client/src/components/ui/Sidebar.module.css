@@ -47,18 +47,22 @@
 
 .navLink:focus,
 .navLink:active,
-.navLink:focus-visible {
-  outline: none; /* Remove default focus outline */
-  border: 1px solid #fff;
-  background-color: rgba(255, 255, 255, 0.1);
-  box-shadow: none; /* Remove box shadow */
+.navLink:focus-visible,
+.navLink:visited,
+.navLink:link,
+.navLink:hover {
+  outline: none !important; /* Ensure no focus outline */
+  border: none !important; /* Ensure no border */
+  box-shadow: none !important; /* Ensure no box shadow */
+  color: inherit !important; /* Ensure text color is inherited */
 }
 
 .activeLink {
-  border: 1px solid #007bff;
-  background-color: rgba(0, 123, 255, 0.3); /* Adjusted the active background color */
-  outline: none; /* Remove default focus outline */
-  box-shadow: none; /* Remove box shadow */
+  border: none !important; /* Ensure no border */
+  background-color: rgba(0, 123, 255, 0.3); /* Adjust the active background color */
+  outline: none !important; /* Ensure no focus outline */
+  box-shadow: none !important; /* Ensure no box shadow */
+  color: white !important; /* Ensure text color is white */
 }
 
 .bottomLinks {

@@ -55,16 +55,25 @@
   flex: 1;
 }
 
-.content {
+.contentWrapper {
+  display: flex;
   flex: 1;
-  margin-left: 250px; /* Adjust this value based on your sidebar width */
-  padding: 20px;
-  overflow-y: auto;
+  width: 100%;
+  max-width: 1200px;
   transition: margin-left 0.3s ease; /* Smooth transition for sidebar toggle */
+  justify-content: center; /* Center content horizontally */
 }
 
-.sidebarHidden .content {
+.contentWrapper.sidebarHidden .content {
   margin-left: 0; /* Adjust this value when the sidebar is hidden */
+}
+
+.content {
+  flex: 1;
+  padding: 20px;
+  margin-left: 250px; /* Adjust this value based on your sidebar width */
+  overflow-y: auto;
+  transition: margin-left 0.3s ease; /* Smooth transition for sidebar toggle */
 }
 
 footer {

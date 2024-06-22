@@ -1,12 +1,30 @@
+/* Reset focus and active states globally */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  outline: none !important; /* Ensure no focus outline */
+}
+
+a:focus,
+a:active,
+a:focus-visible,
+a:visited {
+  outline: none !important; /* Ensure no focus outline */
+  border: none !important; /* Ensure no border */
+  box-shadow: none !important; /* Ensure no box shadow */
+}
+
+/* Your existing styles */
 :root {
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
   font-weight: 400;
-
   color-scheme: light dark;
   color: rgba(255, 255, 255, 0.87);
   background-color: #242424;
-
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
@@ -68,4 +86,36 @@ button:focus-visible {
   button {
     background-color: #f9f9f9;
   }
+}
+
+/* Remove focus outlines for all elements */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  outline: none !important; /* Ensure no focus outline */
+}
+
+a:focus,
+a:active,
+a:focus-visible,
+a:visited,
+a:link,
+a:hover {
+  outline: none !important; /* Ensure no focus outline */
+  border: none !important; /* Ensure no border */
+  box-shadow: none !important; /* Ensure no box shadow */
+  color: inherit; /* Ensure text color is inherited */
+}
+
+.navLink:focus,
+.navLink:active,
+.navLink:focus-visible,
+.navLink:visited,
+.navLink:link,
+.navLink:hover {
+  outline: none !important; /* Ensure no focus outline */
+  border: none !important; /* Ensure no border */
+  box-shadow: none !important; /* Ensure no box shadow */
+  color: inherit; /* Ensure text color is inherited */
 }

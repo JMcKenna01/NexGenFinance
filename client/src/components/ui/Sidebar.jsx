@@ -8,7 +8,7 @@ const Sidebar = () => {
 
   const toggleSidebar = () => {
     setIsVisible(!isVisible);
-    document.querySelector('.App').classList.toggle('sidebarHidden', !isVisible);
+    document.querySelector('.contentWrapper').classList.toggle('sidebarHidden', !isVisible);
   };
 
   return (

@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import { useMutation } from '@apollo/client';
+import { SEND_EMAIL } from '../utils/mutations';
 import styles from './Contact.module.css';
 
 const Contact = () => {
@@ -9,6 +11,8 @@ const Contact = () => {
   });
   const [errorMessage, setErrorMessage] = useState('');
   const [successMessage, setSuccessMessage] = useState('');
+
+  const [sendEmail] = useMutation(SEND_EMAIL);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -21,25 +25,21 @@ const Contact = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    // Reset messages
     setErrorMessage('');
     setSuccessMessage('');
 
-    const response = await fetch('http://localhost:5000/send-email', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify(formState)
-    });
+    try {
+      const { data } = await sendEmail({ variables: { ...formState } });
 
-    const result = await response.json();
-
-    if (response.status === 200) {
-      setSuccessMessage('Message sent successfully!');
-      setFormState({ name: '', email: '', message: '' });
-    } else {
-      setErrorMessage(result.error || 'An error occurred. Please try again.');
+      if (data.sendEmail) {
+        setSuccessMessage('Message sent successfully!');
+        setFormState({ name: '', email: '', message: '' });
+      } else {
+        setErrorMessage('An error occurred. Please try again.');
+      }
+    } catch (error) {
+      console.error('Error occurred while sending request:', error);
+      setErrorMessage('Failed to send message. Please try again later.');
     }
   };
 

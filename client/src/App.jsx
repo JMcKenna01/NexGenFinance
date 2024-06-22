@@ -25,7 +25,7 @@ function App() {
       <Navbar />
       <div className="main">
         <Sidebar />
-        <div className="content">
+        <div className="contentWrapper">
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/dashboard" element={<Dashboard />} />
