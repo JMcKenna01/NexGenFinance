@@ -11,6 +11,7 @@ import InvestmentDetails from './pages/InvestmentDetails';
 import InvestmentList from './investments/InvestmentList';
 import InvestmentForm from './components/forms/InvestmentForm';
 import BudgetManager from './pages/BudgetManager';
+import FinancialManager from './pages/FinancialManager';
 import Dashboard from './pages/Dashboard';
 import Contact from './pages/Contact';
 import LearningResources from './learning/LearningResources';
@@ -38,6 +39,7 @@ function App() {
             <Route path="/investments" element={<InvestmentList />} />
             <Route path="/investments/new" element={<InvestmentForm />} />
             <Route path="/investments/:id" element={<InvestmentDetails />} />
+            <Route path="/financial" element={<FinancialManager />} />
             <Route path="/budget" element={<BudgetManager />} />
             <Route path="/contact" element={<Contact />} />
             <Route path="/learning-resources" element={<LearningResources />} />

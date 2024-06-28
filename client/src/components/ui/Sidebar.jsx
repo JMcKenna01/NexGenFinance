@@ -46,7 +46,7 @@ const Sidebar = () => {
             Goals
           </NavLink>
           <NavLink
-            to="/investment"
+            to="/investments"
             className={({ isActive }) => (isActive ? styles.activeLink : styles.navLink)}
           >
             Investment
