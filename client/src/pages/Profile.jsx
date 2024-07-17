@@ -8,7 +8,7 @@ const GET_PROFILE_DATA = gql`
   query GetProfileData {
     user {
       id
-      name
+      username
       email
       totalIncome
       totalExpenses
@@ -21,7 +21,10 @@ const Profile = () => {
   const { loading, error, data } = useQuery(GET_PROFILE_DATA);
 
   if (loading) return <div>Loading...</div>;
-  if (error) return <div>Error fetching profile data</div>;
+  if (error) {
+    console.error("Error fetching profile data:", error);
+    return <div>Error fetching profile data: {error.message}</div>;
+  }
 
   return (
     <div className={styles.profile}>
@@ -32,7 +35,7 @@ const Profile = () => {
       <section className={styles.details}>
         <div className={styles.detail}>
           <h2>Name</h2>
-          <p>{data.user.name}</p>
+          <p>{data.user.username}</p>
         </div>
         <div className={styles.detail}>
           <h2>Email</h2>

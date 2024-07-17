@@ -8,7 +8,7 @@ import SignUp from './pages/Signup';
 import TransactionsPage from './pages/TransactionsPage';
 import GoalsManager from './pages/GoalsManager';
 import InvestmentDetails from './pages/InvestmentDetails';
-import InvestmentList from './investments/InvestmentList';
+import InvestmentList from './pages/InvestmentList';
 import InvestmentForm from './components/forms/InvestmentForm';
 import BudgetManager from './pages/BudgetManager';
 import FinancialManager from './pages/FinancialManager';

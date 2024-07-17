@@ -23,7 +23,8 @@ const Sidebar = () => {
         <div className={styles.navSection}>
           <NavLink
             to="/"
-            className={({ isActive }) => (isActive ? styles.activeLink : styles.navLink)}
+            // className={({ isActive }) => (isActive ? styles.activeLink : styles.navLink)}
+            className={styles.navLink}
           >
             Home
           </NavLink>
