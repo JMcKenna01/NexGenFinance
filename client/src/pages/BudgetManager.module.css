@@ -1,29 +1,57 @@
-.BudgetManager {
-    padding: 20px;
-  }
-  
-  .BudgetManager h2 {
-    margin-bottom: 20px;
-  }
-  
-  .BudgetManager ul {
-    list-style-type: none;
-    padding: 0;
-  }
-  
-  .BudgetManager li {
-    margin-bottom: 20px;
-    padding: 10px;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-  }
-  
-  .BudgetManager li h3 {
-    margin: 0;
-    font-size: 1.2em;
-  }
-  
-  .BudgetManager li p {
-    margin: 5px 0;
-  }
-  
+.budgetManager {
+  padding: 20px;
+  padding-bottom: 80px; /* Add bottom padding to ensure totalBox is visible */
+}
+
+.budgetManager h1 {
+  font-size: 2rem;
+  margin-bottom: 20px;
+  color: #fff;
+}
+
+.categoryGroup {
+  margin-bottom: 40px;
+  flex: 1;
+}
+
+.categoryGroup h2 {
+  margin-bottom: 10px;
+  border-bottom: 2px solid #ccc;
+  padding-bottom: 5px;
+  color: #ccc;
+}
+
+.categoryGroups {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.budgetItems {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 20px;
+}
+
+.totalBox {
+  padding: 10px;
+  margin-top: 20px;
+  background: #f9f9f9;
+  border-radius: 5px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  width: 100%; /* Ensure it spans the full width */
+  position: relative; /* Adjust position relative to its parent */
+}
+
+.totalBox h2 {
+  margin: 0 0 10px 0;
+  font-size: 1.5rem;
+  color: #333;
+}
+
+.totalBox p {
+  margin: 0;
+  font-size: 1.2rem;
+  color: #333;
+}

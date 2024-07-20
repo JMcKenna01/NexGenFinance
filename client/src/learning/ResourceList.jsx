@@ -1,17 +1,20 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import ResourceItem from './ResourceItem';
 import styles from './ResourceList.module.css';
 
 const ResourceList = ({ resources }) => {
   return (
-    <div className={styles.ResourceList}>
-      <h2>Learning Resources</h2>
-      <ul>
-        {resources.map(resource => (
-          <ResourceItem key={resource.id} resource={resource} />
-        ))}
-      </ul>
+    <div className={styles.resourceList}>
+      {resources.map(resource => (
+        <div key={resource.id} className={styles.resourceItem}>
+          <a href={resource.url} target="_blank" rel="noopener noreferrer" className={styles.resourceLink}>
+            <div>
+              <h2 className={styles.resourceTitle}>{resource.title}</h2>
+              <p className={styles.resourceDescription}>{resource.description}</p>
+            </div>
+          </a>
+        </div>
+      ))}
     </div>
   );
 };

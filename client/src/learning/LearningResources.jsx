@@ -37,7 +37,8 @@ const LearningResources = () => {
   ];
 
   return (
-    <div className={styles.LearningResources}>
+    <div className={styles.learningResources}>
+      <h1 className={styles.title}>Learning Resources</h1>
       <ResourceList resources={resources} />
     </div>
   );

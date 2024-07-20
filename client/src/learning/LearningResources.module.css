@@ -1,38 +1,67 @@
-.LearningResources {
-    padding: 20px;
-  }
-  
-  .LearningResources h2 {
-    margin-bottom: 20px;
-  }
-  
-  .LearningResources ul {
-    list-style-type: none;
-    padding: 0;
-  }
-  
-  .LearningResources .ResourceItem {
-    margin-bottom: 20px;
-    padding: 10px;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-  }
-  
-  .LearningResources .ResourceItem h3 {
-    margin: 0;
-    font-size: 1.2em;
-  }
-  
-  .LearningResources .ResourceItem p {
-    margin: 5px 0;
-  }
-  
-  .LearningResources .ResourceItem a {
-    color: #007bff;
-    text-decoration: none;
-  }
-  
-  .LearningResources .ResourceItem a:hover {
-    text-decoration: underline;
-  }
-  
+.learningResources {
+  padding: 40px;
+  font-family: 'Helvetica Neue', Arial, sans-serif;
+  background-color: #f1f1f1;
+  min-height: 100vh;
+  display: flex; /* Use flexbox for layout */
+  flex-direction: column; /* Column layout */
+  align-items: center; /* Center items */
+  width: 100vw !important; /* Force full width */
+}
+
+.title {
+  text-align: center;
+  margin-bottom: 40px;
+  font-size: 36px;
+  color: #2c3e50;
+  border-bottom: 2px solid #2c3e50;
+  display: inline-block;
+  padding-bottom: 10px;
+  width: 100%; /* Ensure title takes full width */
+  max-width: 1200px; /* Set a reasonable max-width for readability */
+}
+
+.resourceList {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100vw !important; /* Force full width */
+  max-width: 1200px; /* Set a reasonable max-width for readability */
+}
+
+.resourceItem {
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  margin: 15px 0;
+  padding: 20px;
+  width: 100%; /* Ensure full width */
+  transition: transform 0.2s, box-shadow 0.2s;
+  display: flex;
+  align-items: center;
+}
+
+.resourceItem:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+}
+
+.resourceLink {
+  text-decoration: none;
+  color: inherit;
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+
+.resourceTitle {
+  font-size: 24px;
+  color: #2c3e50;
+  margin-bottom: 10px;
+}
+
+.resourceDescription {
+  font-size: 16px;
+  color: #7f8c8d;
+}

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Routes, Route } from 'react-router-dom';
 import Home from './pages/Home';
 import Profile from './pages/Profile';
@@ -21,12 +21,18 @@ import Sidebar from './components/ui/Sidebar';
 import './App.css';
 
 function App() {
+  const [isSidebarHidden, setSidebarHidden] = useState(false);
+
+  const toggleSidebar = () => {
+    setSidebarHidden(!isSidebarHidden);
+  };
+
   return (
     <div className="App">
       <Navbar />
       <div className="main">
-        <Sidebar />
-        <div className="contentWrapper">
+        <Sidebar isSidebarHidden={isSidebarHidden} toggleSidebar={toggleSidebar} />
+        <div className={isSidebarHidden ? 'contentWrapper sidebarHidden' : 'contentWrapper'}>
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/dashboard" element={<Dashboard />} />
