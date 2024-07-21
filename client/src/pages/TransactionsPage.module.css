@@ -1,9 +1,26 @@
-.transactionPage {
-    padding: 20px;
-  }
-  
-  .transactionPage h1 {
-    font-size: 2rem;
-    margin-bottom: 20px;
-  }
-  
+.transactionsPage {
+  padding: 20px;
+}
+
+.transactionsPage h1 {
+  font-size: 2rem;
+  margin-bottom: 20px;
+  text-align: center;
+  color: #fff;
+}
+
+.addButton {
+  padding: 10px 20px;
+  background-color: #4c6ef5;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: background-color 0.3s;
+  margin: 10px 0;
+}
+
+.addButton:hover {
+  background-color: #3b5bdb;
+}

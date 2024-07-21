@@ -29,6 +29,7 @@ TransactionList.propTypes = {
       description: PropTypes.string.isRequired,
       amount: PropTypes.number.isRequired,
       date: PropTypes.string.isRequired,
+      category: PropTypes.string.isRequired,
     })
   ).isRequired,
   onEdit: PropTypes.func.isRequired,

@@ -1,10 +1,14 @@
 import React, { useState } from 'react';
-import TransactionFilter from '../financial/TransactionFilter';
+import TransactionsForm from '../components/forms/TransactionsForm';
 import TransactionList from '../financial/TransactionList';
-import './TransactionsPage.module.css';
+import styles from './TransactionsPage.module.css';
 
 const TransactionsPage = () => {
   const [transactions, setTransactions] = useState([]);
+
+  const handleSave = (transaction) => {
+    setTransactions([...transactions, { ...transaction, id: Date.now().toString() }]);
+  };
 
   const handleFilter = (filters) => {
     // Implement your filtering logic here
@@ -15,13 +19,13 @@ const TransactionsPage = () => {
   };
 
   const handleDelete = (id) => {
-    setTransactions(transactions.filter(transaction => transaction.id !== id));
+    setTransactions(transactions.filter((transaction) => transaction.id !== id));
   };
 
   return (
-    <div className="transactions-page">
+    <div className={styles.transactionsPage}>
       <h1>Transactions</h1>
-      <TransactionFilter onFilter={handleFilter} />
+      <TransactionsForm onSave={handleSave} />
       <TransactionList transactions={transactions} onEdit={handleEdit} onDelete={handleDelete} />
     </div>
   );

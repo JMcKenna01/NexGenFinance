@@ -1,26 +1,23 @@
 import React, { useState } from 'react';
-import PropTypes from 'prop-types';
-import styles from './TransactionForm.module.css';
+import styles from './TransactionsForm.module.css';
 
-const TransactionForm = ({ onSave, transaction }) => {
-  const [formState, setFormState] = useState({
-    description: transaction ? transaction.description : '',
-    amount: transaction ? transaction.amount : '',
-    date: transaction ? transaction.date : '',
-  });
-
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormState({
-      ...formState,
-      [name]: value,
-    });
-  };
+const TransactionsForm = ({ onSave }) => {
+  const [description, setDescription] = useState('');
+  const [date, setDate] = useState('');
+  const [amount, setAmount] = useState('');
+  const [category, setCategory] = useState('');
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    onSave(formState);
-    setFormState({ description: '', amount: '', date: '' });
+    if (!description || !date || !amount || !category) {
+      alert('Please fill in all fields.');
+      return;
+    }
+    onSave({ description, date, amount, category });
+    setDescription('');
+    setDate('');
+    setAmount('');
+    setCategory('');
   };
 
   return (
@@ -31,21 +28,9 @@ const TransactionForm = ({ onSave, transaction }) => {
           <input
             type="text"
             id="description"
-            name="description"
-            value={formState.description}
-            onChange={handleChange}
-            required
-          />
-        </div>
-        <div className={styles.formGroup}>
-          <label htmlFor="amount">Amount</label>
-          <input
-            type="number"
-            id="amount"
-            name="amount"
-            value={formState.amount}
-            onChange={handleChange}
-            required
+            value={description}
+            onChange={(e) => setDescription(e.target.value)}
+            placeholder="Enter description"
           />
         </div>
         <div className={styles.formGroup}>
@@ -53,27 +38,67 @@ const TransactionForm = ({ onSave, transaction }) => {
           <input
             type="date"
             id="date"
-            name="date"
-            value={formState.date}
-            onChange={handleChange}
-            required
+            value={date}
+            onChange={(e) => setDate(e.target.value)}
           />
         </div>
+        <div className={styles.formGroup}>
+          <label htmlFor="amount">Amount</label>
+          <input
+            type="number"
+            id="amount"
+            value={amount}
+            onChange={(e) => setAmount(e.target.value)}
+            placeholder="Enter amount"
+          />
+        </div>
+        <div className={styles.formGroup}>
+          <label htmlFor="category">Category</label>
+          <select
+            id="category"
+            value={category}
+            onChange={(e) => setCategory(e.target.value)}
+          >
+            <option value="">Select Category</option>
+            <optgroup label="Income">
+              <option value="salary">Salary</option>
+              <option value="business">Business Income</option>
+              <option value="investment">Investment Income</option>
+              <option value="others">Others</option>
+            </optgroup>
+            <optgroup label="Expenses">
+              <option value="housing">Housing</option>
+              <option value="food">Food</option>
+              <option value="transportation">Transportation</option>
+              <option value="entertainment">Entertainment</option>
+              <option value="healthcare">Healthcare</option>
+              <option value="education">Education</option>
+              <option value="others">Others</option>
+            </optgroup>
+            <optgroup label="Investments">
+              <option value="stocks">Stocks</option>
+              <option value="bonds">Bonds</option>
+              <option value="mutual_funds">Mutual Funds</option>
+              <option value="crypto">Crypto</option>
+              <option value="real_estate">Real Estate</option>
+            </optgroup>
+            <optgroup label="Savings">
+              <option value="emergency_fund">Emergency Fund</option>
+              <option value="retirement_fund">Retirement Fund</option>
+              <option value="others">Others</option>
+            </optgroup>
+            <optgroup label="Debt Payments">
+              <option value="credit_card">Credit Card Payments</option>
+              <option value="loan">Loan Payments</option>
+            </optgroup>
+          </select>
+        </div>
         <button type="submit" className={styles.saveButton}>
-          Save
+          Add Transaction
         </button>
       </form>
     </div>
   );
 };
 
-TransactionForm.propTypes = {
-  onSave: PropTypes.func.isRequired,
-  transaction: PropTypes.shape({
-    description: PropTypes.string,
-    amount: PropTypes.number,
-    date: PropTypes.string,
-  }),
-};
-
-export default TransactionForm;
+export default TransactionsForm;

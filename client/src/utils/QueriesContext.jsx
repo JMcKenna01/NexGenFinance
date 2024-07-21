@@ -28,6 +28,8 @@ const QueriesProvider = ({ children }) => {
     totalBudget: 0,
     expenses: []
   });
+  
+  const [transactionsData, setTransactionsData] = useState([]); // Add this line
 
   const [loginUser, { error: loginUserError }] = useMutation(LOGIN_USER);
   const [addUser, { error: addUserError }] = useMutation(ADD_USER);
@@ -62,6 +64,8 @@ const QueriesProvider = ({ children }) => {
   const contextValue = {
     budgetData,
     setBudgetData,
+    transactionsData, // Add this line
+    setTransactionsData, // Add this line
     mutations: {
       loginUser,
       addUser,

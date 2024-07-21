@@ -1,4 +1,45 @@
 .transactionList {
-    margin: 20px 0;
-  }
-  
+  margin-top: 20px;
+}
+
+.transactionItem {
+  background: #f9f9f9;
+  padding: 10px;
+  border-radius: 5px;
+  margin-bottom: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.transactionItem p {
+  margin: 0;
+  padding: 0 10px;
+}
+
+.editButton,
+.deleteButton {
+  padding: 5px 10px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.editButton {
+  background-color: #4c6ef5;
+  color: white;
+  margin-right: 5px;
+}
+
+.editButton:hover {
+  background-color: #3b5bdb;
+}
+
+.deleteButton {
+  background-color: #e74c3c;
+  color: white;
+}
+
+.deleteButton:hover {
+  background-color: #c0392b;
+}
