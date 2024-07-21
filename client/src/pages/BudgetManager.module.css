@@ -55,3 +55,27 @@
   font-size: 1.2rem;
   color: #333;
 }
+
+.totalBudgetInput {
+  margin: 20px 0;
+  text-align: center;
+}
+
+.totalBudgetInput label {
+  font-size: 1rem;
+  margin-right: 10px;
+  color: #fff;
+}
+
+.totalBudgetInput input {
+  padding: 5px;
+  font-size: 1rem;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}
+
+.warning {
+  margin-top: 10px;
+  color: red;
+  font-weight: bold;
+}

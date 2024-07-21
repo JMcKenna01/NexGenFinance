@@ -27,8 +27,14 @@ const Sidebar = () => {
           <NavLink to="/budget" className={({ isActive }) => (isActive ? styles.activeLink : styles.navLink)}>
             Budget
           </NavLink>
-          <NavLink to="/financial" className={({ isActive }) => (isActive ? styles.activeLink : styles.navLink)}>
-            Financial
+          <NavLink to="/financial-overview" className={({ isActive }) => (isActive ? styles.activeLink : styles.navLink)}>
+            Financial Overview
+          </NavLink>
+          <NavLink to="/transactions" className={({ isActive }) => (isActive ? styles.activeLink : styles.navLink)}>
+            Transactions
+          </NavLink>
+          <NavLink to="/accounts" className={({ isActive }) => (isActive ? styles.activeLink : styles.navLink)}>
+            Accounts
           </NavLink>
           <NavLink to="/goals" className={({ isActive }) => (isActive ? styles.activeLink : styles.navLink)}>
             Goals

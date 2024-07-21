@@ -11,13 +11,15 @@ import InvestmentDetails from './pages/InvestmentDetails';
 import InvestmentList from './pages/InvestmentList';
 import InvestmentForm from './components/forms/InvestmentForm';
 import BudgetManager from './pages/BudgetManager';
-import FinancialManager from './pages/FinancialManager';
+import FinancialOverview from './pages/FinancialOverview';
+import AccountsPage from './pages/AccountsPage';
 import Dashboard from './pages/Dashboard';
 import Contact from './pages/Contact';
 import LearningResources from './learning/LearningResources';
 import Navbar from './components/ui/Navbar';
 import Footer from './components/ui/Footer';
 import Sidebar from './components/ui/Sidebar';
+import { QueriesProvider } from './utils/QueriesContext'; // Correct import path
 import './App.css';
 
 function App() {
@@ -28,32 +30,35 @@ function App() {
   };
 
   return (
-    <div className="App">
-      <Navbar />
-      <div className="main">
-        <Sidebar isSidebarHidden={isSidebarHidden} toggleSidebar={toggleSidebar} />
-        <div className={isSidebarHidden ? 'contentWrapper sidebarHidden' : 'contentWrapper'}>
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/dashboard" element={<Dashboard />} />
-            <Route path="/profile" element={<Profile />} />
-            <Route path="/about" element={<About />} />
-            <Route path="/login" element={<Login />} />
-            <Route path="/signup" element={<SignUp />} />
-            <Route path="/transactions" element={<TransactionsPage />} />
-            <Route path="/goals" element={<GoalsManager />} />
-            <Route path="/investments" element={<InvestmentList />} />
-            <Route path="/investments/new" element={<InvestmentForm />} />
-            <Route path="/investments/:id" element={<InvestmentDetails />} />
-            <Route path="/financial" element={<FinancialManager />} />
-            <Route path="/budget" element={<BudgetManager />} />
-            <Route path="/contact" element={<Contact />} />
-            <Route path="/learning-resources" element={<LearningResources />} />
-          </Routes>
+    <QueriesProvider>
+      <div className="App">
+        <Navbar />
+        <div className="main">
+          <Sidebar isSidebarHidden={isSidebarHidden} toggleSidebar={toggleSidebar} />
+          <div className={isSidebarHidden ? 'contentWrapper sidebarHidden' : 'contentWrapper'}>
+            <Routes>
+              <Route path="/" element={<Home />} />
+              <Route path="/dashboard" element={<Dashboard />} />
+              <Route path="/profile" element={<Profile />} />
+              <Route path="/about" element={<About />} />
+              <Route path="/login" element={<Login />} />
+              <Route path="/signup" element={<SignUp />} />
+              <Route path="/transactions" element={<TransactionsPage />} />
+              <Route path="/accounts" element={<AccountsPage />} />
+              <Route path="/goals" element={<GoalsManager />} />
+              <Route path="/investments" element={<InvestmentList />} />
+              <Route path="/investments/new" element={<InvestmentForm />} />
+              <Route path="/investments/:id" element={<InvestmentDetails />} />
+              <Route path="/financial-overview" element={<FinancialOverview />} />
+              <Route path="/budget" element={<BudgetManager />} />
+              <Route path="/contact" element={<Contact />} />
+              <Route path="/learning-resources" element={<LearningResources />} />
+            </Routes>
+          </div>
         </div>
+        <Footer />
       </div>
-      <Footer />
-    </div>
+    </QueriesProvider>
   );
 }
 

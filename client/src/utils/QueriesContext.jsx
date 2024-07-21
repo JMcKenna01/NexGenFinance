@@ -1,4 +1,4 @@
-import React, { createContext, useContext } from 'react';
+import React, { createContext, useContext, useState } from 'react';
 import { useMutation } from '@apollo/client';
 import {
   LOGIN_USER,
@@ -51,9 +51,12 @@ export const QueriesProvider = ({ children }) => {
     return classes.filter(Boolean).join(' ');
   };
 
-  function formatCurrency(value) {
+  const formatCurrency = (value) => {
     return new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(value);
-  }
+  };
+
+  const [budgetItems, setBudgetItems] = useState([]);
+  const [totalBudget, setTotalBudget] = useState(0);
 
   const contextValue = {
     mutations: {
@@ -94,7 +97,11 @@ export const QueriesProvider = ({ children }) => {
     },
     validateEmail,
     classNames,
-    formatCurrency
+    formatCurrency,
+    budgetItems,
+    setBudgetItems,
+    totalBudget,
+    setTotalBudget
   };
 
   return (
@@ -103,3 +110,5 @@ export const QueriesProvider = ({ children }) => {
     </QueriesContext.Provider>
   );
 };
+
+export { QueriesContext };
