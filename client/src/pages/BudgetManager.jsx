@@ -5,13 +5,21 @@ import { QueriesContext } from '../utils/QueriesContext';
 import styles from './BudgetManager.module.css';
 
 const BudgetManager = () => {
-  const { mutations } = useContext(QueriesContext);
-  const [budgetItems, setBudgetItems] = useState([
-    { id: '1', name: 'Groceries', amount: 150.0, category: 'Food' },
-    { id: '2', name: 'House Bills', amount: 1200.0, category: 'Housing' },
-  ]);
+  const { budgetData, setBudgetData } = useContext(QueriesContext);
   const [currentItem, setCurrentItem] = useState(null);
-  const [totalBudget, setTotalBudget] = useState('');
+  const [totalBudget, setTotalBudget] = useState(budgetData.totalBudget);
+
+  // Initial budget items
+  useEffect(() => {
+    const initialItems = [
+      { id: '1', name: 'Groceries', amount: 150.0, category: 'Food' },
+      { id: '2', name: 'House Bills', amount: 1200.0, category: 'Housing' },
+      { id: '3', name: 'Transportation', amount: 300.0, category: 'Transport' }, // New predefined item
+    ];
+    if (budgetData.expenses.length === 0) {
+      setBudgetData({ ...budgetData, expenses: initialItems });
+    }
+  }, []);
 
   useEffect(() => {
     const savedTotalBudget = localStorage.getItem('totalBudget');
@@ -22,13 +30,17 @@ const BudgetManager = () => {
 
   const handleSave = (newItem) => {
     if (currentItem) {
-      setBudgetItems(
-        budgetItems.map((item) =>
+      setBudgetData({
+        ...budgetData,
+        expenses: budgetData.expenses.map((item) =>
           item.id === currentItem.id ? { ...newItem, id: currentItem.id } : item
-        )
-      );
+        ),
+      });
     } else {
-      setBudgetItems([...budgetItems, { ...newItem, id: Date.now().toString() }]);
+      setBudgetData({
+        ...budgetData,
+        expenses: [...budgetData.expenses, { ...newItem, id: Date.now().toString() }],
+      });
     }
     setCurrentItem(null);
   };
@@ -38,19 +50,26 @@ const BudgetManager = () => {
   };
 
   const handleDelete = (id) => {
-    setBudgetItems(budgetItems.filter((item) => item.id !== id));
+    setBudgetData({
+      ...budgetData,
+      expenses: budgetData.expenses.filter((item) => item.id !== id),
+    });
   };
 
   const handleTotalBudgetChange = (e) => {
     const value = e.target.value.replace(/[^\d]/g, '');
     setTotalBudget(value);
+    setBudgetData({
+      ...budgetData,
+      totalBudget: parseFloat(value) || 0,
+    });
     localStorage.setItem('totalBudget', value);
   };
 
-  const totalAmount = budgetItems.reduce((total, item) => total + item.amount, 0);
+  const totalAmount = budgetData.expenses.reduce((total, item) => total + item.amount, 0);
   const totalRemaining = totalBudget ? totalBudget - totalAmount : 0;
 
-  const groupedItems = budgetItems.reduce((acc, item) => {
+  const groupedItems = budgetData.expenses.reduce((acc, item) => {
     if (!acc[item.category]) {
       acc[item.category] = [];
     }

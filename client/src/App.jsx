@@ -19,7 +19,7 @@ import LearningResources from './learning/LearningResources';
 import Navbar from './components/ui/Navbar';
 import Footer from './components/ui/Footer';
 import Sidebar from './components/ui/Sidebar';
-import { QueriesProvider } from './utils/QueriesContext'; // Correct import path
+import { QueriesProvider } from './utils/QueriesContext'; // Correct import
 import './App.css';
 
 function App() {

@@ -3,7 +3,7 @@ import ReactDOM from "react-dom/client";
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import { ApolloProvider, ApolloClient, InMemoryCache, createHttpLink } from '@apollo/client';
 import { setContext } from '@apollo/client/link/context';
-import { QueriesProvider } from './utils/QueriesContext'; // Import the QueriesProvider
+import { QueriesProvider } from './utils/QueriesContext'; // Correct import
 import App from './App';
 import './index.css';
 

@@ -18,13 +18,17 @@ import {
   UPDATE_INVESTMENT,
   DELETE_INVESTMENT
 } from './mutations';
-import auth from './auth';
 
 const QueriesContext = createContext();
 
 export const useQueriesContext = () => useContext(QueriesContext);
 
-export const QueriesProvider = ({ children }) => {
+const QueriesProvider = ({ children }) => {
+  const [budgetData, setBudgetData] = useState({
+    totalBudget: 0,
+    expenses: []
+  });
+
   const [loginUser, { error: loginUserError }] = useMutation(LOGIN_USER);
   const [addUser, { error: addUserError }] = useMutation(ADD_USER);
   const [updateUser, { error: updateUserError }] = useMutation(UPDATE_USER);
@@ -51,14 +55,13 @@ export const QueriesProvider = ({ children }) => {
     return classes.filter(Boolean).join(' ');
   };
 
-  const formatCurrency = (value) => {
+  function formatCurrency(value) {
     return new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(value);
-  };
-
-  const [budgetItems, setBudgetItems] = useState([]);
-  const [totalBudget, setTotalBudget] = useState(0);
+  }
 
   const contextValue = {
+    budgetData,
+    setBudgetData,
     mutations: {
       loginUser,
       addUser,
@@ -97,11 +100,7 @@ export const QueriesProvider = ({ children }) => {
     },
     validateEmail,
     classNames,
-    formatCurrency,
-    budgetItems,
-    setBudgetItems,
-    totalBudget,
-    setTotalBudget
+    formatCurrency
   };
 
   return (
@@ -111,4 +110,4 @@ export const QueriesProvider = ({ children }) => {
   );
 };
 
-export { QueriesContext };
+export { QueriesContext, QueriesProvider };
