@@ -24,7 +24,7 @@
   border: 2px solid #e63946; /* Red border around entire box */
   position: relative; /* Position for pseudo-elements */
   width: 100%; /* Full width */
-  max-width: 1200px; /* Optional: Limit the max width if necessary */
+  max-width: 1200px; /* Limit max width if necessary */
   box-sizing: border-box; /* Include padding and border in width calculation */
 }
 
@@ -66,6 +66,7 @@
   margin-top: 30px; /* Space above buttons */
   margin-bottom: 40px;
   width: 100%; /* Full width */
+  flex-wrap: wrap; /* Allow buttons to wrap on smaller screens */
 }
 
 /* Button Styles */
@@ -125,7 +126,7 @@
   opacity: 0;
   position: relative; /* Position for pseudo-elements */
   width: 100%; /* Full width */
-  max-width: 1200px; /* Optional: Limit the max width if necessary */
+  max-width: 1200px; /* Limit max width if necessary */
   box-sizing: border-box; /* Include padding and border in width calculation */
 }
 
@@ -232,6 +233,53 @@
 }
 
 /* Responsive Design */
+@media (max-width: 1200px) {
+  .header h1 {
+    font-size: 3.5rem; /* Adjusted for medium screens */
+  }
+
+  .header p {
+    font-size: 1.4rem; /* Adjusted for medium screens */
+  }
+
+  .actions {
+    gap: 30px; /* Reduced gap for medium screens */
+  }
+
+  .btnPrimary, .btnSecondary, .btnCTA {
+    font-size: 1.2rem; /* Adjusted for medium screens */
+    padding: 12px 20px; /* Adjusted for medium screens */
+  }
+
+  .news, .testimonials, .ctaSection {
+    padding: 20px; /* Reduced padding for medium screens */
+  }
+
+  .newsItem p, .testimonial p {
+    font-size: 1.2rem; /* Adjusted for medium screens */
+  }
+
+  .news h2, .testimonials h2, .ctaSection h2 {
+    font-size: 2rem; /* Adjusted for medium screens */
+  }
+
+  .ctaSection h2 {
+    font-size: 2rem; /* Adjusted for medium screens */
+  }
+
+  .ctaSection p {
+    font-size: 1.2rem; /* Adjusted for medium screens */
+  }
+
+  .footerLinks a {
+    font-size: 1.1rem; /* Adjusted for medium screens */
+  }
+
+  .footer p {
+    font-size: 1.1rem; /* Adjusted for medium screens */
+  }
+}
+
 @media (max-width: 768px) {
   .header h1 {
     font-size: 3rem; /* Adjusted for smaller screens */
@@ -243,35 +291,97 @@
 
   .actions {
     flex-direction: column;
-    gap: 20px;
-    margin-top: 20px; /* Adjust margin on smaller screens */
+    gap: 20px; /* Reduced gap for smaller screens */
   }
 
   .btnPrimary, .btnSecondary, .btnCTA {
-    font-size: 1.2rem; /* Adjusted for smaller screens */
-    padding: 12px 20px; /* Adjusted for smaller screens */
+    font-size: 1rem; /* Adjusted for smaller screens */
+    padding: 10px 15px; /* Adjusted for smaller screens */
+  }
+
+  .news, .testimonials, .ctaSection {
+    padding: 15px; /* Reduced padding for smaller screens */
+  }
+
+  .newsItem p, .testimonial p {
+    font-size: 1rem; /* Adjusted for smaller screens */
+  }
+
+  .news h2, .testimonials h2, .ctaSection h2 {
+    font-size: 1.8rem; /* Adjusted for smaller screens */
+  }
+
+  .ctaSection h2 {
+    font-size: 1.8rem; /* Adjusted for smaller screens */
+  }
+
+  .ctaSection p {
+    font-size: 1rem; /* Adjusted for smaller screens */
   }
 
   .footerLinks {
     flex-direction: column;
-    gap: 10px;
+    gap: 10px; /* Reduced gap for smaller screens */
   }
 
   .footerLinks a {
     font-size: 1rem; /* Adjusted for smaller screens */
   }
+
+  .footer p {
+    font-size: 1rem; /* Adjusted for smaller screens */
+  }
 }
 
-/* Smooth Animations and Hover Effects */
-* {
-  transition: all 0.3s ease;
-}
+@media (max-width: 480px) {
+  .header h1 {
+    font-size: 2.5rem; /* Adjusted for very small screens */
+  }
 
-a:hover, button:hover {
-  transform: scale(1.05);
-}
+  .header p {
+    font-size: 1rem; /* Adjusted for very small screens */
+  }
 
-input:focus, button:focus, a:focus {
-  outline: 2px solid #e63946;
-  outline-offset: 2px;
+  .actions {
+    flex-direction: column;
+    gap: 15px; /* Reduced gap for very small screens */
+  }
+
+  .btnPrimary, .btnSecondary, .btnCTA {
+    font-size: 0.9rem; /* Adjusted for very small screens */
+    padding: 8px 12px; /* Adjusted for very small screens */
+  }
+
+  .news, .testimonials, .ctaSection {
+    padding: 10px; /* Reduced padding for very small screens */
+  }
+
+  .newsItem p, .testimonial p {
+    font-size: 0.9rem; /* Adjusted for very small screens */
+  }
+
+  .news h2, .testimonials h2, .ctaSection h2 {
+    font-size: 1.6rem; /* Adjusted for very small screens */
+  }
+
+  .ctaSection h2 {
+    font-size: 1.6rem; /* Adjusted for very small screens */
+  }
+
+  .ctaSection p {
+    font-size: 0.9rem; /* Adjusted for very small screens */
+  }
+
+  .footerLinks {
+    flex-direction: column;
+    gap: 5px; /* Reduced gap for very small screens */
+  }
+
+  .footerLinks a {
+    font-size: 0.9rem; /* Adjusted for very small screens */
+  }
+
+  .footer p {
+    font-size: 0.9rem; /* Adjusted for very small screens */
+  }
 }
