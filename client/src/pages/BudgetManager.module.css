@@ -1,19 +1,20 @@
 .budgetManager {
   padding: 20px;
   padding-bottom: 80px;
+  color: #fff; /* Ensure text color is white */
 }
 
 .budgetManager h1 {
   font-size: 2rem;
   margin-bottom: 20px;
-  color: #fff;
+  color: #fff; /* Ensure header color is white */
 }
 
 .totalBudget {
   display: flex;
   align-items: center;
   margin-bottom: 20px;
-  color: #fff;
+  color: #fff; /* Ensure text color is white */
 }
 
 .totalBudget label {
@@ -24,27 +25,37 @@
 .budgetInputWrapper {
   display: flex;
   align-items: center;
+  position: relative;
 }
 
 .dollarSign {
-  padding: 5px;
-  background: #fff;
+  padding: 5px 10px;
+  background: rgba(0, 0, 0, 0.3); /* Match the background */
   border: 1px solid #ccc;
   border-right: none;
   border-radius: 5px 0 0 5px;
-  color: #333;
+  color: #fff; /* Ensure dollar sign color is white */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 32px; /* Ensure it matches the input height */
+  box-sizing: border-box;
 }
 
-.totalBudget input {
+.budgetInput {
   width: 100px;
-  padding: 5px;
+  padding: 5px 10px;
   font-size: 1rem;
   border-radius: 0 5px 5px 0;
   border: 1px solid #ccc;
   text-align: right;
+  background: rgba(0, 0, 0, 0.3); /* Transparent background */
+  color: #fff; /* Ensure text color is white */
+  height: 32px; /* Ensure it matches the dollar sign height */
+  box-sizing: border-box;
 }
 
-.totalBudget input::placeholder {
+.budgetInput::placeholder {
   color: #ccc;
 }
 

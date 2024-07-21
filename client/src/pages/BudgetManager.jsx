@@ -136,6 +136,7 @@ const BudgetManager = () => {
             onChange={handleTotalBudgetChange}
             placeholder=""
             data-tooltip-id="totalBudgetTooltip"
+            className={styles.budgetInput}
           />
           <Tooltip id="totalBudgetTooltip" place="top" effect="solid">
             Enter your total budget here

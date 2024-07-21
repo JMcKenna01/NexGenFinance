@@ -3,46 +3,46 @@ import styles from './Dashboard.module.css'; // Adjust the path if necessary
 
 const Dashboard = () => {
   return (
-    <div className={styles.dashboard}>
-      <div className={styles.header}>
+    <div className={styles.dashboardContainer}>
+      <div className={styles.dashboardHeader}>
         <h1>Welcome to NexGenFinance!</h1>
         <p>Take control of your finances with ease. Track your income, expenses, and investments all in one place.</p>
-        <div className={styles.actions}>
-          <a href="/signup" className={styles.btnPrimary}>Sign Up</a>
-          <a href="/login" className={styles.btnSecondary}>Log In</a>
+        <div className={styles.dashboardActions}>
+          <a href="/signup" className={styles.dashboardBtnPrimary}>Sign Up</a>
+          <a href="/login" className={styles.dashboardBtnSecondary}>Log In</a>
         </div>
       </div>
-      <div className={styles.news}>
+      <div className={styles.dashboardNews}>
         <h2>Latest Updates</h2>
-        <div className={styles.newsItem}>
+        <div className={styles.dashboardNewsItem}>
           <p>NexGenFinance launches new investment tracking feature!</p>
         </div>
-        <div className={styles.newsItem}>
+        <div className={styles.dashboardNewsItem}>
           <p>Upcoming webinar: How to maximize your savings.</p>
         </div>
-        <div className={styles.newsItem}>
+        <div className={styles.dashboardNewsItem}>
           <p>Read our latest blog post on financial planning for beginners.</p>
         </div>
       </div>
-      <div className={styles.testimonials}>
+      <div className={styles.dashboardTestimonials}>
         <h2>Testimonials</h2>
-        <div className={styles.testimonial}>
+        <div className={styles.dashboardTestimonial}>
           <p>"NexGenFinance has completely transformed how I manage my finances!" - Jane D.</p>
         </div>
-        <div className={styles.testimonial}>
+        <div className={styles.dashboardTestimonial}>
           <p>"I love the intuitive design and easy-to-use features." - John S.</p>
         </div>
-        <div className={styles.testimonial}>
+        <div className={styles.dashboardTestimonial}>
           <p>"The best financial app I've ever used!" - Sarah W.</p>
         </div>
       </div>
-      <div className={styles.ctaSection}>
+      <div className={styles.dashboardCtaSection}>
         <h2>Subscribe to our Newsletter</h2>
         <p>Stay updated with the latest news and features from NexGenFinance. Coming soon!</p>
-        <a href="#" className={styles.btnCTA}>Notify Me</a>
+        <a href="#" className={styles.dashboardBtnCTA}>Notify Me</a>
       </div>
-      <div className={styles.footer}>
-        <div className={styles.footerLinks}>
+      <div className={styles.dashboardFooter}>
+        <div className={styles.dashboardFooterLinks}>
           <a href="/about">About</a>
           <a href="/contact">Contact</a>
           <a href="/terms">Terms of Service</a>

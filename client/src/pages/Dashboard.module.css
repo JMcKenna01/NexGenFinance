@@ -1,5 +1,5 @@
 /* Main Container */
-.dashboard {
+.dashboardContainer {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -16,7 +16,7 @@
 }
 
 /* Header Section */
-.header {
+.dashboardHeader {
   background: rgba(0, 0, 0, 0.5);
   padding: 20px;
   border-radius: 10px;
@@ -29,7 +29,7 @@
 }
 
 /* Header Title */
-.header h1 {
+.dashboardHeader h1 {
   font-size: 4rem;
   margin-bottom: 20px;
   color: #fff;
@@ -38,7 +38,7 @@
 }
 
 /* White Underline for Header */
-.header h1::after {
+.dashboardHeader h1::after {
   content: "";
   display: block;
   width: 100%;
@@ -50,7 +50,7 @@
 }
 
 /* Paragraphs in Header */
-.header p {
+.dashboardHeader p {
   font-size: 1.5rem;
   margin-bottom: 20px;
   max-width: 100%;
@@ -59,7 +59,7 @@
 }
 
 /* Action Buttons */
-.actions {
+.dashboardActions {
   display: flex;
   justify-content: center;
   gap: 40px;
@@ -70,7 +70,7 @@
 }
 
 /* Button Styles */
-.btnPrimary, .btnSecondary, .btnCTA {
+.dashboardBtnPrimary, .dashboardBtnSecondary, .dashboardBtnCTA {
   padding: 15px 25px;
   border-radius: 5px;
   text-decoration: none;
@@ -79,32 +79,32 @@
   transition: background 0.3s ease, transform 0.3s ease;
 }
 
-.btnPrimary {
+.dashboardBtnPrimary {
   background: #e63946;
 }
 
-.btnPrimary:hover {
+.dashboardBtnPrimary:hover {
   background: #d62828;
 }
 
-.btnSecondary {
+.dashboardBtnSecondary {
   background: #457b9d;
 }
 
-.btnSecondary:hover {
+.dashboardBtnSecondary:hover {
   background: #1d3557;
 }
 
-.btnCTA {
+.dashboardBtnCTA {
   background: #4CAF50;
 }
 
-.btnCTA:hover {
+.dashboardBtnCTA:hover {
   background: #388E3C;
 }
 
 /* Keyframe Animations */
-@keyframes slideIn {
+@keyframes dashboardSlideIn {
   from {
     transform: translateY(50px);
     opacity: 0;
@@ -116,13 +116,13 @@
 }
 
 /* Section Styling */
-.news, .testimonials, .ctaSection {
+.dashboardNews, .dashboardTestimonials, .dashboardCtaSection {
   background: rgba(0, 0, 0, 0.7);
   border: 2px solid #e63946;
   border-radius: 10px;
   padding: 30px;
   margin: 20px 0;
-  animation: slideIn 1s ease-out forwards;
+  animation: dashboardSlideIn 1s ease-out forwards;
   opacity: 0;
   position: relative;
   width: 100%;
@@ -130,36 +130,36 @@
   box-sizing: border-box;
 }
 
-.news {
+.dashboardNews {
   animation-delay: 0.5s;
 }
 
-.testimonials {
+.dashboardTestimonials {
   animation-delay: 1s;
 }
 
-.ctaSection {
+.dashboardCtaSection {
   animation-delay: 1.5s;
   margin-bottom: 80px;
 }
 
 /* News and Testimonial Items */
-.newsItem, .testimonial {
+.dashboardNewsItem, .dashboardTestimonial {
   margin-bottom: 20px;
 }
 
-.newsItem:last-child, .testimonial:last-child {
+.dashboardNewsItem:last-child, .dashboardTestimonial:last-child {
   margin-bottom: 0;
 }
 
-.newsItem p, .testimonial p {
+.dashboardNewsItem p, .dashboardTestimonial p {
   margin: 0;
   font-size: 1.3rem;
   color: #fff;
 }
 
 /* Section Headers */
-.news h2, .testimonials h2, .ctaSection h2 {
+.dashboardNews h2, .dashboardTestimonials h2, .dashboardCtaSection h2 {
   color: #fff;
   font-weight: bold;
   margin-bottom: 15px;
@@ -169,7 +169,7 @@
 }
 
 /* White Underline for Section Headers */
-.news h2::after, .testimonials h2::after, .ctaSection h2::after {
+.dashboardNews h2::after, .dashboardTestimonials h2::after, .dashboardCtaSection h2::after {
   content: "";
   display: block;
   width: 100%;
@@ -181,20 +181,20 @@
 }
 
 /* CTA Section */
-.ctaSection h2 {
+.dashboardCtaSection h2 {
   color: #fff;
   margin-bottom: 20px;
   font-size: 2.5rem;
 }
 
-.ctaSection p {
+.dashboardCtaSection p {
   color: #fff;
   margin-bottom: 20px;
   font-size: 1.3rem;
 }
 
 /* Footer */
-.footer {
+.dashboardFooter {
   background: rgba(0, 0, 0, 0.8);
   color: #fff;
   text-align: center;
@@ -204,7 +204,7 @@
 }
 
 /* Footer Links */
-.footerLinks {
+.dashboardFooterLinks {
   display: flex;
   justify-content: center;
   gap: 20px;
@@ -212,21 +212,21 @@
   flex-wrap: wrap;
 }
 
-.footerLinks a {
+.dashboardFooterLinks a {
   color: #e63946;
   text-decoration: none;
   padding: 10px 15px;
   font-size: 1.2rem;
 }
 
-.footerLinks a:hover {
+.dashboardFooterLinks a:hover {
   text-decoration: underline;
   background: #444;
   border-radius: 5px;
 }
 
 /* Footer Text */
-.footer p {
+.dashboardFooter p {
   margin: 10px 0;
   color: #fff;
   font-size: 1.2rem;
@@ -234,60 +234,60 @@
 
 /* Responsive Design */
 @media (max-width: 1200px) {
-  .header h1 {
+  .dashboardHeader h1 {
     font-size: 3.5rem;
   }
 
-  .header p {
+  .dashboardHeader p {
     font-size: 1.4rem;
   }
 
-  .actions {
+  .dashboardActions {
     gap: 30px;
   }
 
-  .btnPrimary, .btnSecondary, .btnCTA {
+  .dashboardBtnPrimary, .dashboardBtnSecondary, .dashboardBtnCTA {
     font-size: 1.2rem;
     padding: 12px 20px;
   }
 
-  .news, .testimonials, .ctaSection {
+  .dashboardNews, .dashboardTestimonials, .dashboardCtaSection {
     padding: 20px;
   }
 
-  .newsItem p, .testimonial p {
+  .dashboardNewsItem p, .dashboardTestimonial p {
     font-size: 1.2rem;
   }
 
-  .news h2, .testimonials h2, .ctaSection h2 {
+  .dashboardNews h2, .dashboardTestimonials h2, .dashboardCtaSection h2 {
     font-size: 2rem;
   }
 
-  .ctaSection h2 {
+  .dashboardCtaSection h2 {
     font-size: 2rem;
   }
 
-  .ctaSection p {
+  .dashboardCtaSection p {
     font-size: 1.2rem;
   }
 }
 
 /* Smooth Animations and Hover Effects */
-* {
+.dashboardContainer * {
   transition: all 0.3s ease;
 }
 
-a:hover, button:hover {
+.dashboardContainer a:hover, .dashboardContainer button:hover {
   transform: scale(1.05);
 }
 
-input:focus, button:focus, a:focus {
+.dashboardContainer input:focus, .dashboardContainer button:focus, .dashboardContainer a:focus {
   outline: 2px solid #e63946;
   outline-offset: 2px;
 }
 
 /* Form Styling */
-form {
+.dashboardForm {
   background: transparent; /* Remove white background */
   border: none; /* Remove border */
   padding: 20px;
@@ -298,17 +298,17 @@ form {
 }
 
 /* Input and Button Styles */
-input, button {
+.dashboardInput, .dashboardButton {
   border-radius: 5px;
   box-shadow: none; /* Remove any box shadow */
 }
 
-input:focus, button:focus {
+.dashboardInput:focus, .dashboardButton:focus {
   outline: none;
 }
 
 /* Input Styles */
-input {
+.dashboardInput {
   padding: 15px;
   font-size: 1.2rem;
   border: 1px solid #ddd;
@@ -318,12 +318,12 @@ input {
   background: rgba(255, 255, 255, 0.8); /* Light background for better readability */
 }
 
-input[type="submit"] {
+.dashboardInput[type="submit"] {
   cursor: pointer;
 }
 
 /* Label Styles */
-label {
+.dashboardLabel {
   display: block;
   font-size: 1.2rem; /* Increased font size for labels */
   margin-bottom: 5px; /* Space between label and input */
@@ -331,7 +331,7 @@ label {
 }
 
 /* Button Styles */
-button {
+.dashboardButton {
   cursor: pointer;
   padding: 15px 25px;
   border-radius: 5px;
@@ -341,57 +341,57 @@ button {
   transition: background 0.3s ease, transform 0.3s ease;
 }
 
-/* Button Styles */
-.btnPrimary {
+.dashboardButtonPrimary {
   background: #e63946;
 }
 
-.btnPrimary:hover {
+.dashboardButtonPrimary:hover {
   background: #d62828;
 }
 
-.btnSecondary {
+.dashboardButtonSecondary {
   background: #457b9d;
 }
 
-.btnSecondary:hover {
+.dashboardButtonSecondary:hover {
   background: #1d3557;
 }
 
-.btnCTA {
+.dashboardButtonCTA {
   background: #4CAF50;
 }
 
-.btnCTA:hover {
+.dashboardButtonCTA:hover {
   background: #388E3C;
 }
 
 /* Responsive Design for Signup/Login */
 @media (max-width: 768px) {
-  .header h1 {
+  .dashboardHeader h1 {
     font-size: 2.5rem;
   }
 
-  .header p {
+  .dashboardHeader p {
     font-size: 1.2rem;
   }
 
-  form {
+  .dashboardForm {
     padding: 15px;
   }
 
-  button {
+  .dashboardButton {
     font-size: 1.2rem;
     padding: 12px 20px;
   }
 
-  input {
+  .dashboardInput {
     font-size: 1rem;
     padding: 12px;
   }
 }
+
 /* General Form Styling */
-form {
+.dashboardForm {
   background: transparent; /* Ensure form background is transparent */
   border: none; /* Remove border */
   padding: 20px;
@@ -402,7 +402,7 @@ form {
 }
 
 /* Input Styling */
-input {
+.dashboardInput {
   padding: 15px;
   font-size: 1.2rem;
   border: 1px solid rgba(255, 255, 255, 0.3); /* Light border to blend with background */
@@ -413,13 +413,13 @@ input {
   color: #fff; /* Ensure text color is visible */
 }
 
-input:focus {
+.dashboardInput:focus {
   border-color: #e63946; /* Highlight border color on focus */
   outline: none; /* Remove default outline */
 }
 
 /* Label Styling */
-label {
+.dashboardLabel {
   display: block;
   font-size: 1.2rem; /* Increased font size for labels */
   margin-bottom: 5px; /* Space between label and input */
@@ -427,7 +427,7 @@ label {
 }
 
 /* Button Styling */
-button {
+.dashboardButton {
   cursor: pointer;
   padding: 15px 25px;
   border-radius: 5px;
@@ -438,22 +438,22 @@ button {
   background: #e63946; /* Default button color */
 }
 
-button:hover {
+.dashboardButton:hover {
   background: #d62828; /* Button color on hover */
 }
 
 /* Responsive Design for Signup/Login */
 @media (max-width: 768px) {
-  form {
+  .dashboardForm {
     padding: 15px;
   }
 
-  button {
+  .dashboardButton {
     font-size: 1.2rem;
     padding: 12px 20px;
   }
 
-  input {
+  .dashboardInput {
     font-size: 1rem;
     padding: 12px;
   }
