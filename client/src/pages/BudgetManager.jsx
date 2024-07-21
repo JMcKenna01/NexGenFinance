@@ -1,25 +1,32 @@
 import React, { useState, useEffect, useContext } from 'react';
+import { Pie } from 'react-chartjs-2';
+import { Chart as ChartJS, ArcElement, Tooltip as ChartTooltip, Legend } from 'chart.js';
 import BudgetForm from '../components/forms/BudgetForm';
 import BudgetList from '../budget/BudgetList';
 import { QueriesContext } from '../utils/QueriesContext';
+import { Tooltip } from 'react-tooltip';
+import 'react-tooltip/dist/react-tooltip.css';
 import styles from './BudgetManager.module.css';
+
+// Register the necessary components with ChartJS
+ChartJS.register(ArcElement, ChartTooltip, Legend);
 
 const BudgetManager = () => {
   const { budgetData, setBudgetData } = useContext(QueriesContext);
   const [currentItem, setCurrentItem] = useState(null);
-  const [totalBudget, setTotalBudget] = useState(budgetData.totalBudget);
+  const [totalBudget, setTotalBudget] = useState(0); // Initial budget set to 0
 
   // Initial budget items
   useEffect(() => {
     const initialItems = [
       { id: '1', name: 'Groceries', amount: 150.0, category: 'Food' },
       { id: '2', name: 'House Bills', amount: 1200.0, category: 'Housing' },
-      { id: '3', name: 'Transportation', amount: 300.0, category: 'Transport' }, // New predefined item
+      { id: '3', name: 'Transportation', amount: 300.0, category: 'Transport' },
     ];
     if (budgetData.expenses.length === 0) {
       setBudgetData({ ...budgetData, expenses: initialItems });
     }
-  }, []);
+  }, [budgetData, setBudgetData]);
 
   useEffect(() => {
     const savedTotalBudget = localStorage.getItem('totalBudget');
@@ -77,6 +84,45 @@ const BudgetManager = () => {
     return acc;
   }, {});
 
+  const pieData = {
+    labels: Object.keys(groupedItems),
+    datasets: [
+      {
+        data: Object.keys(groupedItems).map(category =>
+          groupedItems[category].reduce((total, item) => total + item.amount, 0)
+        ),
+        backgroundColor: ['#FF6384', '#36A2EB', '#FFCE56', '#4BC0C0', '#9966FF', '#FF9F40'],
+        hoverBackgroundColor: ['#FF6384', '#36A2EB', '#FFCE56', '#4BC0C0', '#9966FF', '#FF9F40'],
+        borderColor: '#fff',
+        borderWidth: 2,
+      }
+    ]
+  };
+
+  const pieOptions = {
+    plugins: {
+      legend: {
+        display: true,
+        position: 'bottom',
+        labels: {
+          color: '#fff',
+          font: {
+            size: 14
+          }
+        }
+      },
+      tooltip: {
+        callbacks: {
+          label: function(tooltipItem) {
+            return `${tooltipItem.label}: $${tooltipItem.raw}`;
+          }
+        }
+      }
+    },
+    responsive: true,
+    maintainAspectRatio: false,
+  };
+
   return (
     <div className={styles.budgetManager}>
       <h1>Budget Manager</h1>
@@ -89,7 +135,11 @@ const BudgetManager = () => {
             value={totalBudget}
             onChange={handleTotalBudgetChange}
             placeholder=""
+            data-tooltip-id="totalBudgetTooltip"
           />
+          <Tooltip id="totalBudgetTooltip" place="top" effect="solid">
+            Enter your total budget here
+          </Tooltip>
         </div>
         <p className={styles.remaining}>
           Remaining: ${totalRemaining.toFixed(2)}
@@ -117,6 +167,12 @@ const BudgetManager = () => {
         <div className={styles.totalBox}>
           <h2>Total Expenses</h2>
           <p>${totalAmount.toFixed(2)}</p>
+        </div>
+      </div>
+      <div className={styles.pieChartWrapper}>
+        <h2 className={styles.chartTitle}>Expenses Breakdown</h2>
+        <div className={styles.pieChartContainer}>
+          <Pie data={pieData} options={pieOptions} />
         </div>
       </div>
     </div>

@@ -1,6 +1,6 @@
 .budgetManager {
   padding: 20px;
-  padding-bottom: 80px; /* Add bottom padding to ensure totalBox is visible */
+  padding-bottom: 80px;
 }
 
 .budgetManager h1 {
@@ -97,6 +97,12 @@
   flex-direction: column;
   justify-content: space-between;
   min-width: 250px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.budgetItem:hover {
+  transform: scale(1.02);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
 .budgetItem p {
@@ -104,10 +110,26 @@
   padding: 5px 0;
 }
 
+.editButton, .deleteButton {
+  padding: 5px 10px;
+  font-size: 1rem;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.editButton:hover {
+  background-color: #3b5bdb;
+}
+
+.deleteButton:hover {
+  background-color: #db3b3b;
+}
+
 .totalBoxWrapper {
   margin-top: 40px;
   display: flex;
-  justify-content: center; /* Center the total box */
+  justify-content: center;
 }
 
 .totalBox {
@@ -116,8 +138,8 @@
   border-radius: 10px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
   text-align: center;
-  width: 100%; /* Ensure it spans the full width */
-  max-width: 400px; /* Add a max width to keep it contained */
+  width: 100%;
+  max-width: 400px;
 }
 
 .totalBox h2 {
@@ -131,4 +153,41 @@
   font-size: 1.4rem;
   color: #333;
   font-weight: bold;
+}
+
+.pieChartWrapper {
+  margin-top: 40px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.pieChartContainer {
+  width: 100%;
+  max-width: 500px;
+  height: 300px;
+}
+
+.chartTitle {
+  font-size: 1.8rem;
+  color: #fff;
+  margin-bottom: 20px;
+}
+
+.viewDetailsButton {
+  margin-top: 10px;
+  padding: 5px 10px;
+  font-size: 1rem;
+  background-color: #4c6ef5;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  text-decoration: none;
+  text-align: center;
+  transition: background-color 0.3s ease;
+}
+
+.viewDetailsButton:hover {
+  background-color: #3b5bdb;
 }

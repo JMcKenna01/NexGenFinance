@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Routes, Route } from 'react-router-dom';
+import { Routes, Route, Navigate } from 'react-router-dom';
 import Home from './pages/Home';
 import Profile from './pages/Profile';
 import About from './pages/About';
@@ -20,7 +20,12 @@ import Navbar from './components/ui/Navbar';
 import Footer from './components/ui/Footer';
 import Sidebar from './components/ui/Sidebar';
 import { QueriesProvider } from './utils/QueriesContext'; // Correct import
+import AuthService from './utils/auth'; // Import AuthService
 import './App.css';
+
+const PrivateRoute = ({ element: Element, ...rest }) => {
+  return AuthService.loggedIn() ? <Element {...rest} /> : <Navigate to="/dashboard" />;
+};
 
 function App() {
   const [isSidebarHidden, setSidebarHidden] = useState(false);
@@ -32,31 +37,32 @@ function App() {
   return (
     <QueriesProvider>
       <div className="App">
-        <Navbar />
+        {AuthService.loggedIn() && <Navbar />}
         <div className="main">
-          <Sidebar isSidebarHidden={isSidebarHidden} toggleSidebar={toggleSidebar} />
+          {AuthService.loggedIn() && <Sidebar isSidebarHidden={isSidebarHidden} toggleSidebar={toggleSidebar} />}
           <div className={isSidebarHidden ? 'contentWrapper sidebarHidden' : 'contentWrapper'}>
             <Routes>
-              <Route path="/" element={<Home />} />
               <Route path="/dashboard" element={<Dashboard />} />
-              <Route path="/profile" element={<Profile />} />
-              <Route path="/about" element={<About />} />
               <Route path="/login" element={<Login />} />
               <Route path="/signup" element={<SignUp />} />
-              <Route path="/transactions" element={<TransactionsPage />} />
-              <Route path="/accounts" element={<AccountsPage />} />
-              <Route path="/goals" element={<GoalsManager />} />
-              <Route path="/investments" element={<InvestmentList />} />
-              <Route path="/investments/new" element={<InvestmentForm />} />
-              <Route path="/investments/:id" element={<InvestmentDetails />} />
-              <Route path="/financial-overview" element={<FinancialOverview />} />
-              <Route path="/budget" element={<BudgetManager />} />
-              <Route path="/contact" element={<Contact />} />
-              <Route path="/learning-resources" element={<LearningResources />} />
+              <Route path="/" element={<PrivateRoute element={Home} />} />
+              <Route path="/profile" element={<PrivateRoute element={Profile} />} />
+              <Route path="/about" element={<PrivateRoute element={About} />} />
+              <Route path="/transactions" element={<PrivateRoute element={TransactionsPage} />} />
+              <Route path="/accounts" element={<PrivateRoute element={AccountsPage} />} />
+              <Route path="/goals" element={<PrivateRoute element={GoalsManager} />} />
+              <Route path="/investments" element={<PrivateRoute element={InvestmentList} />} />
+              <Route path="/investments/new" element={<PrivateRoute element={InvestmentForm} />} />
+              <Route path="/investments/:id" element={<PrivateRoute element={InvestmentDetails} />} />
+              <Route path="/financial-overview" element={<PrivateRoute element={FinancialOverview} />} />
+              <Route path="/budget" element={<PrivateRoute element={BudgetManager} />} />
+              <Route path="/contact" element={<PrivateRoute element={Contact} />} />
+              <Route path="/learning-resources" element={<PrivateRoute element={LearningResources} />} />
+              <Route path="*" element={<Navigate to="/dashboard" />} />
             </Routes>
           </div>
         </div>
-        <Footer />
+        {AuthService.loggedIn() && <Footer />}
       </div>
     </QueriesProvider>
   );
