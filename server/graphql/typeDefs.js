@@ -66,6 +66,7 @@ const typeDefs = gql`
   }
 
   type Query {
+    getProfileData (id: ID!): User
     getUser(id: ID!): User
     getUserByEmail(email: String!): User
     getTransaction(id: ID!): Transaction

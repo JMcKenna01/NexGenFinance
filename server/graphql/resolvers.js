@@ -56,6 +56,11 @@ const resolvers = {
       if (!investment) throw new Error('Investment not found');
       return investment;
     },
+    getProfileData: async (_, { id }) => {
+      const ProfileData = await ProfileData.findById(id);
+      if (!ProfileData) throw new Error('ProfileData not found');
+      return ProfileData;
+    },
     welcomeMessage: () => {
       return "Welcome to NexGenFinance!";
     },
