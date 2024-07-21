@@ -11,6 +11,8 @@
   text-align: center;
   overflow: hidden; /* To contain animations */
   position: relative; /* Ensure footer can be positioned at the bottom */
+  width: 100%; /* Ensure container is full width */
+  box-sizing: border-box; /* Include padding and border in width calculation */
 }
 
 /* Header Section */
@@ -21,10 +23,14 @@
   margin-bottom: 40px;
   border: 2px solid #e63946; /* Red border around entire box */
   position: relative; /* Position for pseudo-elements */
+  width: 100%; /* Full width */
+  max-width: 1200px; /* Optional: Limit the max width if necessary */
+  box-sizing: border-box; /* Include padding and border in width calculation */
 }
 
+/* Header Title */
 .header h1 {
-  font-size: 3rem;
+  font-size: 4rem; /* Increased font size */
   margin-bottom: 20px;
   color: #fff; /* Ensure text is white */
   position: relative; /* Ensure underline is positioned correctly */
@@ -45,9 +51,9 @@
 
 /* Paragraphs in Header */
 .header p {
-  font-size: 1.2rem;
+  font-size: 1.5rem; /* Increased font size */
   margin-bottom: 20px;
-  max-width: 600px;
+  max-width: 100%; /* Ensure full width */
   margin: 0 auto;
   color: #fff; /* Ensure text is white */
 }
@@ -59,14 +65,16 @@
   gap: 40px; /* Increased gap for better visibility */
   margin-top: 30px; /* Space above buttons */
   margin-bottom: 40px;
+  width: 100%; /* Full width */
 }
 
+/* Button Styles */
 .btnPrimary, .btnSecondary, .btnCTA {
-  padding: 10px 20px;
+  padding: 15px 25px; /* Increased padding for better visibility */
   border-radius: 5px;
   text-decoration: none;
   color: #fff;
-  font-size: 1.1rem;
+  font-size: 1.3rem; /* Increased font size */
   transition: background 0.3s ease;
 }
 
@@ -111,11 +119,14 @@
   background: rgba(0, 0, 0, 0.7);
   border: 2px solid #e63946; /* Red border around entire box */
   border-radius: 10px;
-  padding: 20px;
+  padding: 30px; /* Increased padding */
   margin: 20px 0;
   animation: slideIn 1s ease-out forwards;
   opacity: 0;
   position: relative; /* Position for pseudo-elements */
+  width: 100%; /* Full width */
+  max-width: 1200px; /* Optional: Limit the max width if necessary */
+  box-sizing: border-box; /* Include padding and border in width calculation */
 }
 
 .news {
@@ -133,7 +144,7 @@
 
 /* News and Testimonial Items */
 .newsItem, .testimonial {
-  margin-bottom: 15px;
+  margin-bottom: 20px; /* Increased margin */
 }
 
 .newsItem:last-child, .testimonial:last-child {
@@ -142,7 +153,7 @@
 
 .newsItem p, .testimonial p {
   margin: 0;
-  font-size: 1.1rem;
+  font-size: 1.3rem; /* Increased font size */
   color: #fff; /* Ensure text is white */
 }
 
@@ -150,9 +161,10 @@
 .news h2, .testimonials h2, .ctaSection h2 {
   color: #fff; /* Ensure text is white */
   font-weight: bold; /* Make headers bold */
-  margin-bottom: 10px; /* Space above the white underline */
+  margin-bottom: 15px; /* Space above the white underline */
   position: relative; /* Ensure pseudo-element is positioned correctly */
   display: inline-block; /* Adjust width to content */
+  font-size: 2.5rem; /* Increased font size */
 }
 
 /* White Underline for Section Headers */
@@ -171,11 +183,13 @@
 .ctaSection h2 {
   color: #fff;
   margin-bottom: 20px;
+  font-size: 2.5rem; /* Increased font size */
 }
 
 .ctaSection p {
   color: #fff;
   margin-bottom: 20px;
+  font-size: 1.3rem; /* Increased font size */
 }
 
 /* Footer */
@@ -200,7 +214,8 @@
 .footerLinks a {
   color: #e63946;
   text-decoration: none;
-  padding: 5px 10px;
+  padding: 10px 15px; /* Increased padding */
+  font-size: 1.2rem; /* Increased font size */
 }
 
 .footerLinks a:hover {
@@ -211,18 +226,19 @@
 
 /* Footer Text */
 .footer p {
-  margin: 5px 0;
+  margin: 10px 0; /* Increased margin */
   color: #fff; /* Ensure footer text is white */
+  font-size: 1.2rem; /* Increased font size */
 }
 
 /* Responsive Design */
 @media (max-width: 768px) {
   .header h1 {
-    font-size: 2rem;
+    font-size: 3rem; /* Adjusted for smaller screens */
   }
 
   .header p {
-    font-size: 1rem;
+    font-size: 1.2rem; /* Adjusted for smaller screens */
   }
 
   .actions {
@@ -232,13 +248,17 @@
   }
 
   .btnPrimary, .btnSecondary, .btnCTA {
-    font-size: 1rem;
-    padding: 10px 15px;
+    font-size: 1.2rem; /* Adjusted for smaller screens */
+    padding: 12px 20px; /* Adjusted for smaller screens */
   }
 
   .footerLinks {
     flex-direction: column;
     gap: 10px;
+  }
+
+  .footerLinks a {
+    font-size: 1rem; /* Adjusted for smaller screens */
   }
 }
 
