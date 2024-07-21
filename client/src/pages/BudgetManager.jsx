@@ -1,12 +1,24 @@
-import React, { useContext, useState } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import BudgetForm from '../components/forms/BudgetForm';
 import BudgetList from '../budget/BudgetList';
 import { QueriesContext } from '../utils/QueriesContext';
 import styles from './BudgetManager.module.css';
 
 const BudgetManager = () => {
-  const { budgetItems, setBudgetItems, totalBudget, setTotalBudget } = useContext(QueriesContext);
+  const { mutations } = useContext(QueriesContext);
+  const [budgetItems, setBudgetItems] = useState([
+    { id: '1', name: 'Groceries', amount: 150.0, category: 'Food' },
+    { id: '2', name: 'House Bills', amount: 1200.0, category: 'Housing' },
+  ]);
   const [currentItem, setCurrentItem] = useState(null);
+  const [totalBudget, setTotalBudget] = useState('');
+
+  useEffect(() => {
+    const savedTotalBudget = localStorage.getItem('totalBudget');
+    if (savedTotalBudget) {
+      setTotalBudget(savedTotalBudget);
+    }
+  }, []);
 
   const handleSave = (newItem) => {
     if (currentItem) {
@@ -18,7 +30,7 @@ const BudgetManager = () => {
     } else {
       setBudgetItems([...budgetItems, { ...newItem, id: Date.now().toString() }]);
     }
-    setCurrentItem(null); // Clear the form after saving
+    setCurrentItem(null);
   };
 
   const handleEdit = (item) => {
@@ -30,10 +42,14 @@ const BudgetManager = () => {
   };
 
   const handleTotalBudgetChange = (e) => {
-    setTotalBudget(parseFloat(e.target.value) || 0);
+    const value = e.target.value.replace(/[^\d]/g, '');
+    setTotalBudget(value);
+    localStorage.setItem('totalBudget', value);
   };
 
-  const totalSpent = budgetItems.reduce((total, item) => total + item.amount, 0);
+  const totalAmount = budgetItems.reduce((total, item) => total + item.amount, 0);
+  const totalRemaining = totalBudget ? totalBudget - totalAmount : 0;
+
   const groupedItems = budgetItems.reduce((acc, item) => {
     if (!acc[item.category]) {
       acc[item.category] = [];
@@ -45,16 +61,25 @@ const BudgetManager = () => {
   return (
     <div className={styles.budgetManager}>
       <h1>Budget Manager</h1>
-      <BudgetForm onSave={handleSave} budgetItem={currentItem} />
-      <div className={styles.totalBudgetInput}>
-        <label>Total Budget: $</label>
-        <input
-          type="number"
-          value={totalBudget}
-          onChange={handleTotalBudgetChange}
-          placeholder="Enter total budget"
-        />
+      <div className={styles.totalBudget}>
+        <label>Total Budget: </label>
+        <div className={styles.budgetInputWrapper}>
+          <span className={styles.dollarSign}>$</span>
+          <input
+            type="text"
+            value={totalBudget}
+            onChange={handleTotalBudgetChange}
+            placeholder=""
+          />
+        </div>
+        <p className={styles.remaining}>
+          Remaining: ${totalRemaining.toFixed(2)}
+        </p>
+        {totalRemaining < 0 && (
+          <div className={styles.warningBar}>Warning: Over Budget!</div>
+        )}
       </div>
+      <BudgetForm onSave={handleSave} budgetItem={currentItem} />
       <div className={styles.categoryGroups}>
         {Object.keys(groupedItems).map((category) => (
           <div key={category} className={styles.categoryGroup}>
@@ -68,14 +93,11 @@ const BudgetManager = () => {
             </div>
           </div>
         ))}
+      </div>
+      <div className={styles.totalBoxWrapper}>
         <div className={styles.totalBox}>
-          <h2>Total</h2>
-          <p>${totalSpent.toFixed(2)}</p>
-          {totalSpent > totalBudget && (
-            <div className={styles.warning}>
-              Warning: You have exceeded your total budget!
-            </div>
-          )}
+          <h2>Total Expenses</h2>
+          <p>${totalAmount.toFixed(2)}</p>
         </div>
       </div>
     </div>

@@ -9,6 +9,61 @@
   color: #fff;
 }
 
+.totalBudget {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+  color: #fff;
+}
+
+.totalBudget label {
+  margin-right: 10px;
+  font-size: 1.2rem;
+}
+
+.budgetInputWrapper {
+  display: flex;
+  align-items: center;
+}
+
+.dollarSign {
+  padding: 5px;
+  background: #fff;
+  border: 1px solid #ccc;
+  border-right: none;
+  border-radius: 5px 0 0 5px;
+  color: #333;
+}
+
+.totalBudget input {
+  width: 100px;
+  padding: 5px;
+  font-size: 1rem;
+  border-radius: 0 5px 5px 0;
+  border: 1px solid #ccc;
+  text-align: right;
+}
+
+.totalBudget input::placeholder {
+  color: #ccc;
+}
+
+.remaining {
+  margin-left: 20px;
+  font-size: 1rem;
+  color: #fff;
+}
+
+.warningBar {
+  margin-left: 20px;
+  padding: 5px 10px;
+  background-color: #f54c4c;
+  color: white;
+  border-radius: 5px;
+  font-size: 1rem;
+  display: inline-block;
+}
+
 .categoryGroup {
   margin-bottom: 40px;
   flex: 1;
@@ -33,49 +88,31 @@
   gap: 20px;
 }
 
+.totalBoxWrapper {
+  margin-top: 40px;
+  display: flex;
+  justify-content: center; /* Center the total box */
+}
+
 .totalBox {
-  padding: 10px;
-  margin-top: 20px;
+  padding: 15px 20px;
   background: #f9f9f9;
-  border-radius: 5px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
   text-align: center;
   width: 100%; /* Ensure it spans the full width */
-  position: relative; /* Adjust position relative to its parent */
+  max-width: 400px; /* Add a max width to keep it contained */
 }
 
 .totalBox h2 {
   margin: 0 0 10px 0;
-  font-size: 1.5rem;
+  font-size: 1.6rem;
   color: #333;
 }
 
 .totalBox p {
   margin: 0;
-  font-size: 1.2rem;
+  font-size: 1.4rem;
   color: #333;
-}
-
-.totalBudgetInput {
-  margin: 20px 0;
-  text-align: center;
-}
-
-.totalBudgetInput label {
-  font-size: 1rem;
-  margin-right: 10px;
-  color: #fff;
-}
-
-.totalBudgetInput input {
-  padding: 5px;
-  font-size: 1rem;
-  border-radius: 5px;
-  border: 1px solid #ccc;
-}
-
-.warning {
-  margin-top: 10px;
-  color: red;
   font-weight: bold;
 }
