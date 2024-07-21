@@ -9,74 +9,74 @@
   min-height: 100vh;
   color: #fff;
   text-align: center;
-  overflow: hidden; /* To contain animations */
-  position: relative; /* Ensure footer can be positioned at the bottom */
-  width: 100%; /* Ensure container is full width */
-  box-sizing: border-box; /* Include padding and border in width calculation */
+  overflow: hidden;
+  position: relative;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 /* Header Section */
 .header {
-  background: rgba(0, 0, 0, 0.5); 
+  background: rgba(0, 0, 0, 0.5);
   padding: 20px;
   border-radius: 10px;
   margin-bottom: 40px;
-  border: 2px solid #e63946; /* Red border around entire box */
-  position: relative; /* Position for pseudo-elements */
-  width: 100%; /* Full width */
-  max-width: 1200px; /* Limit max width if necessary */
-  box-sizing: border-box; /* Include padding and border in width calculation */
+  border: 2px solid #e63946;
+  position: relative;
+  width: 100%;
+  max-width: 1200px;
+  box-sizing: border-box;
 }
 
 /* Header Title */
 .header h1 {
-  font-size: 4rem; /* Increased font size */
+  font-size: 4rem;
   margin-bottom: 20px;
-  color: #fff; /* Ensure text is white */
-  position: relative; /* Ensure underline is positioned correctly */
-  padding-bottom: 10px; /* Space between text and underline */
+  color: #fff;
+  position: relative;
+  padding-bottom: 10px;
 }
 
 /* White Underline for Header */
 .header h1::after {
   content: "";
   display: block;
-  width: 100%; /* Full width underline */
+  width: 100%;
   height: 2px;
-  background: #fff; /* White underline */
+  background: #fff;
   position: absolute;
-  bottom: 0; /* Position at the bottom of the heading */
+  bottom: 0;
   left: 0;
 }
 
 /* Paragraphs in Header */
 .header p {
-  font-size: 1.5rem; /* Increased font size */
+  font-size: 1.5rem;
   margin-bottom: 20px;
-  max-width: 100%; /* Ensure full width */
+  max-width: 100%;
   margin: 0 auto;
-  color: #fff; /* Ensure text is white */
+  color: #fff;
 }
 
 /* Action Buttons */
 .actions {
   display: flex;
-  justify-content: center; /* Center the buttons */
-  gap: 40px; /* Increased gap for better visibility */
-  margin-top: 30px; /* Space above buttons */
+  justify-content: center;
+  gap: 40px;
+  margin-top: 30px;
   margin-bottom: 40px;
-  width: 100%; /* Full width */
-  flex-wrap: wrap; /* Allow buttons to wrap on smaller screens */
+  width: 100%;
+  flex-wrap: wrap;
 }
 
 /* Button Styles */
 .btnPrimary, .btnSecondary, .btnCTA {
-  padding: 15px 25px; /* Increased padding for better visibility */
+  padding: 15px 25px;
   border-radius: 5px;
   text-decoration: none;
   color: #fff;
-  font-size: 1.3rem; /* Increased font size */
-  transition: background 0.3s ease;
+  font-size: 1.3rem;
+  transition: background 0.3s ease, transform 0.3s ease;
 }
 
 .btnPrimary {
@@ -118,16 +118,16 @@
 /* Section Styling */
 .news, .testimonials, .ctaSection {
   background: rgba(0, 0, 0, 0.7);
-  border: 2px solid #e63946; /* Red border around entire box */
+  border: 2px solid #e63946;
   border-radius: 10px;
-  padding: 30px; /* Increased padding */
+  padding: 30px;
   margin: 20px 0;
   animation: slideIn 1s ease-out forwards;
   opacity: 0;
-  position: relative; /* Position for pseudo-elements */
-  width: 100%; /* Full width */
-  max-width: 1200px; /* Limit max width if necessary */
-  box-sizing: border-box; /* Include padding and border in width calculation */
+  position: relative;
+  width: 100%;
+  max-width: 1200px;
+  box-sizing: border-box;
 }
 
 .news {
@@ -140,12 +140,12 @@
 
 .ctaSection {
   animation-delay: 1.5s;
-  margin-bottom: 80px; /* Increased space below this section */
+  margin-bottom: 80px;
 }
 
 /* News and Testimonial Items */
 .newsItem, .testimonial {
-  margin-bottom: 20px; /* Increased margin */
+  margin-bottom: 20px;
 }
 
 .newsItem:last-child, .testimonial:last-child {
@@ -154,29 +154,29 @@
 
 .newsItem p, .testimonial p {
   margin: 0;
-  font-size: 1.3rem; /* Increased font size */
-  color: #fff; /* Ensure text is white */
+  font-size: 1.3rem;
+  color: #fff;
 }
 
 /* Section Headers */
 .news h2, .testimonials h2, .ctaSection h2 {
-  color: #fff; /* Ensure text is white */
-  font-weight: bold; /* Make headers bold */
-  margin-bottom: 15px; /* Space above the white underline */
-  position: relative; /* Ensure pseudo-element is positioned correctly */
-  display: inline-block; /* Adjust width to content */
-  font-size: 2.5rem; /* Increased font size */
+  color: #fff;
+  font-weight: bold;
+  margin-bottom: 15px;
+  position: relative;
+  display: inline-block;
+  font-size: 2.5rem;
 }
 
 /* White Underline for Section Headers */
 .news h2::after, .testimonials h2::after, .ctaSection h2::after {
   content: "";
   display: block;
-  width: 100%; /* Full width underline */
+  width: 100%;
   height: 2px;
-  background: #fff; /* White underline */
+  background: #fff;
   position: absolute;
-  bottom: 0; /* Position at the bottom of the heading */
+  bottom: 0;
   left: 0;
 }
 
@@ -184,13 +184,13 @@
 .ctaSection h2 {
   color: #fff;
   margin-bottom: 20px;
-  font-size: 2.5rem; /* Increased font size */
+  font-size: 2.5rem;
 }
 
 .ctaSection p {
   color: #fff;
   margin-bottom: 20px;
-  font-size: 1.3rem; /* Increased font size */
+  font-size: 1.3rem;
 }
 
 /* Footer */
@@ -200,7 +200,7 @@
   text-align: center;
   padding: 20px;
   width: 100%;
-  position: relative; /* Ensure proper positioning */
+  position: relative;
 }
 
 /* Footer Links */
@@ -209,14 +209,14 @@
   justify-content: center;
   gap: 20px;
   margin-bottom: 10px;
-  flex-wrap: wrap; /* Allow links to wrap on smaller screens */
+  flex-wrap: wrap;
 }
 
 .footerLinks a {
   color: #e63946;
   text-decoration: none;
-  padding: 10px 15px; /* Increased padding */
-  font-size: 1.2rem; /* Increased font size */
+  padding: 10px 15px;
+  font-size: 1.2rem;
 }
 
 .footerLinks a:hover {
@@ -227,161 +227,234 @@
 
 /* Footer Text */
 .footer p {
-  margin: 10px 0; /* Increased margin */
-  color: #fff; /* Ensure footer text is white */
-  font-size: 1.2rem; /* Increased font size */
+  margin: 10px 0;
+  color: #fff;
+  font-size: 1.2rem;
 }
 
 /* Responsive Design */
 @media (max-width: 1200px) {
   .header h1 {
-    font-size: 3.5rem; /* Adjusted for medium screens */
+    font-size: 3.5rem;
   }
 
   .header p {
-    font-size: 1.4rem; /* Adjusted for medium screens */
+    font-size: 1.4rem;
   }
 
   .actions {
-    gap: 30px; /* Reduced gap for medium screens */
+    gap: 30px;
   }
 
   .btnPrimary, .btnSecondary, .btnCTA {
-    font-size: 1.2rem; /* Adjusted for medium screens */
-    padding: 12px 20px; /* Adjusted for medium screens */
+    font-size: 1.2rem;
+    padding: 12px 20px;
   }
 
   .news, .testimonials, .ctaSection {
-    padding: 20px; /* Reduced padding for medium screens */
+    padding: 20px;
   }
 
   .newsItem p, .testimonial p {
-    font-size: 1.2rem; /* Adjusted for medium screens */
+    font-size: 1.2rem;
   }
 
   .news h2, .testimonials h2, .ctaSection h2 {
-    font-size: 2rem; /* Adjusted for medium screens */
+    font-size: 2rem;
   }
 
   .ctaSection h2 {
-    font-size: 2rem; /* Adjusted for medium screens */
+    font-size: 2rem;
   }
 
   .ctaSection p {
-    font-size: 1.2rem; /* Adjusted for medium screens */
-  }
-
-  .footerLinks a {
-    font-size: 1.1rem; /* Adjusted for medium screens */
-  }
-
-  .footer p {
-    font-size: 1.1rem; /* Adjusted for medium screens */
+    font-size: 1.2rem;
   }
 }
 
+/* Smooth Animations and Hover Effects */
+* {
+  transition: all 0.3s ease;
+}
+
+a:hover, button:hover {
+  transform: scale(1.05);
+}
+
+input:focus, button:focus, a:focus {
+  outline: 2px solid #e63946;
+  outline-offset: 2px;
+}
+
+/* Form Styling */
+form {
+  background: transparent; /* Remove white background */
+  border: none; /* Remove border */
+  padding: 20px;
+  margin: 0 auto;
+  max-width: 400px;
+  box-sizing: border-box;
+  position: relative; /* Ensure proper positioning */
+}
+
+/* Input and Button Styles */
+input, button {
+  border-radius: 5px;
+  box-shadow: none; /* Remove any box shadow */
+}
+
+input:focus, button:focus {
+  outline: none;
+}
+
+/* Input Styles */
+input {
+  padding: 15px;
+  font-size: 1.2rem;
+  border: 1px solid #ddd;
+  width: 100%;
+  box-sizing: border-box;
+  margin-bottom: 20px;
+  background: rgba(255, 255, 255, 0.8); /* Light background for better readability */
+}
+
+input[type="submit"] {
+  cursor: pointer;
+}
+
+/* Label Styles */
+label {
+  display: block;
+  font-size: 1.2rem; /* Increased font size for labels */
+  margin-bottom: 5px; /* Space between label and input */
+  color: #333; /* Dark text for labels */
+}
+
+/* Button Styles */
+button {
+  cursor: pointer;
+  padding: 15px 25px;
+  border-radius: 5px;
+  text-decoration: none;
+  color: #fff;
+  font-size: 1.3rem;
+  transition: background 0.3s ease, transform 0.3s ease;
+}
+
+/* Button Styles */
+.btnPrimary {
+  background: #e63946;
+}
+
+.btnPrimary:hover {
+  background: #d62828;
+}
+
+.btnSecondary {
+  background: #457b9d;
+}
+
+.btnSecondary:hover {
+  background: #1d3557;
+}
+
+.btnCTA {
+  background: #4CAF50;
+}
+
+.btnCTA:hover {
+  background: #388E3C;
+}
+
+/* Responsive Design for Signup/Login */
 @media (max-width: 768px) {
   .header h1 {
-    font-size: 3rem; /* Adjusted for smaller screens */
+    font-size: 2.5rem;
   }
 
   .header p {
-    font-size: 1.2rem; /* Adjusted for smaller screens */
+    font-size: 1.2rem;
   }
 
-  .actions {
-    flex-direction: column;
-    gap: 20px; /* Reduced gap for smaller screens */
+  form {
+    padding: 15px;
   }
 
-  .btnPrimary, .btnSecondary, .btnCTA {
-    font-size: 1rem; /* Adjusted for smaller screens */
-    padding: 10px 15px; /* Adjusted for smaller screens */
+  button {
+    font-size: 1.2rem;
+    padding: 12px 20px;
   }
 
-  .news, .testimonials, .ctaSection {
-    padding: 15px; /* Reduced padding for smaller screens */
-  }
-
-  .newsItem p, .testimonial p {
-    font-size: 1rem; /* Adjusted for smaller screens */
-  }
-
-  .news h2, .testimonials h2, .ctaSection h2 {
-    font-size: 1.8rem; /* Adjusted for smaller screens */
-  }
-
-  .ctaSection h2 {
-    font-size: 1.8rem; /* Adjusted for smaller screens */
-  }
-
-  .ctaSection p {
-    font-size: 1rem; /* Adjusted for smaller screens */
-  }
-
-  .footerLinks {
-    flex-direction: column;
-    gap: 10px; /* Reduced gap for smaller screens */
-  }
-
-  .footerLinks a {
-    font-size: 1rem; /* Adjusted for smaller screens */
-  }
-
-  .footer p {
-    font-size: 1rem; /* Adjusted for smaller screens */
+  input {
+    font-size: 1rem;
+    padding: 12px;
   }
 }
+/* General Form Styling */
+form {
+  background: transparent; /* Ensure form background is transparent */
+  border: none; /* Remove border */
+  padding: 20px;
+  margin: 0 auto;
+  max-width: 400px;
+  box-sizing: border-box;
+  position: relative; /* Ensure proper positioning */
+}
 
-@media (max-width: 480px) {
-  .header h1 {
-    font-size: 2.5rem; /* Adjusted for very small screens */
+/* Input Styling */
+input {
+  padding: 15px;
+  font-size: 1.2rem;
+  border: 1px solid rgba(255, 255, 255, 0.3); /* Light border to blend with background */
+  width: 100%;
+  box-sizing: border-box;
+  margin-bottom: 20px;
+  background: rgba(0, 0, 0, 0.3); /* Transparent background for consistency */
+  color: #fff; /* Ensure text color is visible */
+}
+
+input:focus {
+  border-color: #e63946; /* Highlight border color on focus */
+  outline: none; /* Remove default outline */
+}
+
+/* Label Styling */
+label {
+  display: block;
+  font-size: 1.2rem; /* Increased font size for labels */
+  margin-bottom: 5px; /* Space between label and input */
+  color: #fff; /* Label color to match text */
+}
+
+/* Button Styling */
+button {
+  cursor: pointer;
+  padding: 15px 25px;
+  border-radius: 5px;
+  text-decoration: none;
+  color: #fff;
+  font-size: 1.3rem;
+  transition: background 0.3s ease, transform 0.3s ease;
+  background: #e63946; /* Default button color */
+}
+
+button:hover {
+  background: #d62828; /* Button color on hover */
+}
+
+/* Responsive Design for Signup/Login */
+@media (max-width: 768px) {
+  form {
+    padding: 15px;
   }
 
-  .header p {
-    font-size: 1rem; /* Adjusted for very small screens */
+  button {
+    font-size: 1.2rem;
+    padding: 12px 20px;
   }
 
-  .actions {
-    flex-direction: column;
-    gap: 15px; /* Reduced gap for very small screens */
-  }
-
-  .btnPrimary, .btnSecondary, .btnCTA {
-    font-size: 0.9rem; /* Adjusted for very small screens */
-    padding: 8px 12px; /* Adjusted for very small screens */
-  }
-
-  .news, .testimonials, .ctaSection {
-    padding: 10px; /* Reduced padding for very small screens */
-  }
-
-  .newsItem p, .testimonial p {
-    font-size: 0.9rem; /* Adjusted for very small screens */
-  }
-
-  .news h2, .testimonials h2, .ctaSection h2 {
-    font-size: 1.6rem; /* Adjusted for very small screens */
-  }
-
-  .ctaSection h2 {
-    font-size: 1.6rem; /* Adjusted for very small screens */
-  }
-
-  .ctaSection p {
-    font-size: 0.9rem; /* Adjusted for very small screens */
-  }
-
-  .footerLinks {
-    flex-direction: column;
-    gap: 5px; /* Reduced gap for very small screens */
-  }
-
-  .footerLinks a {
-    font-size: 0.9rem; /* Adjusted for very small screens */
-  }
-
-  .footer p {
-    font-size: 0.9rem; /* Adjusted for very small screens */
+  input {
+    font-size: 1rem;
+    padding: 12px;
   }
 }
