@@ -1,51 +1,102 @@
 .goalFormContainer {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin: 20px 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  color: #fff;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+}
+
+.motivationalQuotes {
+  font-size: 1.5rem;
+  text-align: center;
+  margin-bottom: 20px;
+  padding: 10px;
+  background: rgba(0, 0, 0, 0.6);
+  border-radius: 10px;
+  color: #fff;
+  max-width: 600px;
+  animation: fadeIn 2s ease-in-out;
+}
+
+.goalForm {
+  max-width: 600px;
+  width: 100%;
+  padding: 20px;
+  background: rgba(0, 0, 0, 0.7);
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+  display: flex;
+  flex-direction: column;
+  animation: slideIn 1s ease-in-out;
+}
+
+.title {
+  text-align: center;
+  margin-bottom: 20px;
+  font-size: 2.5rem;
+}
+
+.formGroup {
+  margin-bottom: 1.5rem;
+}
+
+.formGroup label {
+  display: block;
+  font-size: 1.2rem;
+  margin-bottom: 0.5rem;
+  color: #fff;
+}
+
+.formGroup input,
+.formGroup select,
+.formGroup textarea {
+  width: 100%;
+  padding: 0.75rem;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-sizing: border-box;
+  margin-bottom: 0.5rem;
+  background: rgba(255, 255, 255, 0.9);
+  color: #000;
+}
+
+.formGroup input::placeholder,
+.formGroup textarea::placeholder {
+  color: #aaa;
+}
+
+.saveButton {
+  padding: 10px 20px;
+  background-color: #4c6ef5;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 1.2rem;
+  transition: background-color 0.3s;
+}
+
+.saveButton:hover {
+  background-color: #3b5bdb;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
   }
-  
-  .goalForm {
-    max-width: 400px;
-    width: 100%;
-    padding: 20px;
-    background: #f9f9f9;
-    border-radius: 10px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    display: flex;
-    flex-direction: column;
+  to {
+    opacity: 1;
   }
-  
-  .formGroup {
-    margin-bottom: 1rem;
+}
+
+@keyframes slideIn {
+  from {
+    transform: translateY(-20px);
   }
-  
-  .formGroup label {
-    display: block;
-    font-size: 1rem;
-    margin-bottom: 0.5rem;
+  to {
+    transform: translateY(0);
   }
-  
-  .formGroup input {
-    width: 100%;
-    padding: 0.5rem;
-    font-size: 1rem;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-  }
-  
-  .saveButton {
-    padding: 10px 20px;
-    background-color: #4c6ef5;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 1rem;
-    transition: background-color 0.3s;
-  }
-  
-  .saveButton:hover {
-    background-color: #3b5bdb;
-  }
-  
+}

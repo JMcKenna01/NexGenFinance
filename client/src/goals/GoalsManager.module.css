@@ -1,9 +1,9 @@
 .goalsManager {
-    padding: 20px;
-  }
-  
-  .goalsManager h1 {
-    font-size: 2rem;
-    margin-bottom: 20px;
-  }
-  
+  padding: 20px;
+  color: #fff;
+}
+
+.goalsManager h1 {
+  font-size: 2rem;
+  margin-bottom: 20px;
+}

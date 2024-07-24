@@ -1,42 +1,20 @@
 import React from 'react';
-import { gql, useQuery } from '@apollo/client';
-import { useParams } from 'react-router-dom';
+import PropTypes from 'prop-types';
+import styles from './InvestmentDetails.module.css';
 
-const GET_INVESTMENT_DETAILS = gql`
-  query GetInvestmentDetails($id: ID!) {
-    investment(id: $id) {
-      id
-      name
-      type
-      currentValue
-      initialInvestment
-      date
-      description
-    }
-  }
-`;
-
-const InvestmentDetails = () => {
-  const { id } = useParams();
-  const { loading, error, data } = useQuery(GET_INVESTMENT_DETAILS, {
-    variables: { id },
-  });
-
-  if (loading) return <p>Loading...</p>;
-  if (error) return <p>Error: {error.message}</p>;
-
-  const { investment } = data;
+const InvestmentDetails = ({ investmentId }) => {
+  // Placeholder for fetching investment details using the investmentId
 
   return (
-    <div>
-      <h2>{investment.name}</h2>
-      <p>Type: {investment.type}</p>
-      <p>Current Value: ${investment.currentValue.toFixed(2)}</p>
-      <p>Initial Investment: ${investment.initialInvestment.toFixed(2)}</p>
-      <p>Date: {new Date(investment.date).toLocaleDateString()}</p>
-      <p>Description: {investment.description}</p>
+    <div className={styles.investmentDetails}>
+      <h1>Investment Details</h1>
+      {/* Add details content here */}
     </div>
   );
+};
+
+InvestmentDetails.propTypes = {
+  investmentId: PropTypes.string.isRequired,
 };
 
 export default InvestmentDetails;

@@ -1,4 +1,91 @@
 .goalList {
-    margin: 20px 0;
+  margin-top: 20px;
+}
+
+.goalItem {
+  background: #f9f9f9;
+  padding: 10px;
+  border-radius: 10px;
+  margin-bottom: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  animation: fadeIn 0.5s ease-in-out;
+}
+
+.goalDetails {
+  flex: 1;
+}
+
+.goalTitle {
+  font-size: 1.5rem;
+  margin: 0;
+}
+
+.goalDescription {
+  margin: 10px 0;
+}
+
+.goalDate, .goalAmount, .goalCategory {
+  margin: 5px 0;
+  font-size: 1rem;
+}
+
+.progressBar {
+  width: 100%;
+  height: 10px;
+  background-color: #e0e0e0;
+  border-radius: 5px;
+  overflow: hidden;
+  margin-top: 10px;
+}
+
+.progress {
+  height: 100%;
+  background-color: #4caf50;
+  transition: width 0.5s ease-in-out;
+}
+
+.actions {
+  display: flex;
+  gap: 10px;
+}
+
+.editButton, .deleteButton {
+  padding: 5px 10px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  transition: background-color 0.3s;
+}
+
+.editButton {
+  background-color: #4c6ef5;
+  color: white;
+}
+
+.editButton:hover {
+  background-color: #3b5bdb;
+}
+
+.deleteButton {
+  background-color: #f54c4c;
+  color: white;
+}
+
+.deleteButton:hover {
+  background-color: #db3b3b;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
   }
-  
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

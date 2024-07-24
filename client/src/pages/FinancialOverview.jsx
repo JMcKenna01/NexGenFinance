@@ -12,19 +12,28 @@ const FinancialOverview = () => {
   useEffect(() => {
     // Fetch accounts data
     fetch('/api/accounts')
-      .then(response => response.json())
+      .then(response => {
+        if (!response.ok) throw new Error('Network response was not ok');
+        return response.json();
+      })
       .then(data => setAccounts(data))
       .catch(error => console.error('Error fetching accounts:', error));
 
     // Fetch transactions data
     fetch('/api/transactions')
-      .then(response => response.json())
+      .then(response => {
+        if (!response.ok) throw new Error('Network response was not ok');
+        return response.json();
+      })
       .then(data => setTransactions(data))
       .catch(error => console.error('Error fetching transactions:', error));
 
     // Fetch investments data
     fetch('/api/investments')
-      .then(response => response.json())
+      .then(response => {
+        if (!response.ok) throw new Error('Network response was not ok');
+        return response.json();
+      })
       .then(data => setInvestments(data))
       .catch(error => console.error('Error fetching investments:', error));
   }, []);

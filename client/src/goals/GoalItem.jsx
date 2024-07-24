@@ -6,9 +6,11 @@ const GoalItem = ({ goal, onEdit, onDelete }) => {
   return (
     <div className={styles.goalItem}>
       <div className={styles.details}>
-        <h3 className={styles.name}>{goal.name}</h3>
-        <p className={styles.targetAmount}>Target Amount: ${goal.targetAmount.toFixed(2)}</p>
-        <p className={styles.deadline}>Deadline: {goal.deadline}</p>
+        <h3 className={styles.title}>{goal.title}</h3>
+        <p className={styles.description}>{goal.description}</p>
+        <p className={styles.date}>Target Date: {new Date(goal.targetDate).toLocaleDateString()}</p>
+        <p className={styles.amount}>Amount: ${goal.amount}</p>
+        <p className={styles.category}>Category: {goal.category}</p>
       </div>
       <div className={styles.actions}>
         <button onClick={() => onEdit(goal)} className={styles.editButton}>
@@ -25,9 +27,11 @@ const GoalItem = ({ goal, onEdit, onDelete }) => {
 GoalItem.propTypes = {
   goal: PropTypes.shape({
     id: PropTypes.string.isRequired,
-    name: PropTypes.string.isRequired,
-    targetAmount: PropTypes.number.isRequired,
-    deadline: PropTypes.string.isRequired,
+    title: PropTypes.string.isRequired,
+    description: PropTypes.string.isRequired,
+    targetDate: PropTypes.string.isRequired,
+    amount: PropTypes.number.isRequired,
+    category: PropTypes.string.isRequired,
   }).isRequired,
   onEdit: PropTypes.func.isRequired,
   onDelete: PropTypes.func.isRequired,

@@ -1,79 +1,91 @@
 import React, { useState } from 'react';
-import PropTypes from 'prop-types';
 import styles from './GoalForm.module.css';
 
-const GoalForm = ({ onSave, goal }) => {
-  const [formState, setFormState] = useState({
-    name: goal ? goal.name : '',
-    targetAmount: goal ? goal.targetAmount : '',
-    deadline: goal ? goal.deadline : '',
-  });
-
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormState({
-      ...formState,
-      [name]: value,
-    });
-  };
+const GoalForm = ({ onSave }) => {
+  const [title, setTitle] = useState('');
+  const [description, setDescription] = useState('');
+  const [targetDate, setTargetDate] = useState('');
+  const [amount, setAmount] = useState('');
+  const [category, setCategory] = useState('Major Purchase');
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    onSave(formState);
-    setFormState({ name: '', targetAmount: '', deadline: '' });
+    if (!title || !description || !targetDate || !amount || !category) {
+      alert('Please fill in all fields.');
+      return;
+    }
+    onSave({ title, description, targetDate, amount, category });
+    setTitle('');
+    setDescription('');
+    setTargetDate('');
+    setAmount('');
+    setCategory('Major Purchase');
   };
 
   return (
     <div className={styles.goalFormContainer}>
       <form className={styles.goalForm} onSubmit={handleSubmit}>
+        <h1 className={styles.title}>Goals Manager</h1>
         <div className={styles.formGroup}>
-          <label htmlFor="name">Name</label>
+          <label htmlFor="title">Title</label>
           <input
             type="text"
-            id="name"
-            name="name"
-            value={formState.name}
-            onChange={handleChange}
-            required
+            id="title"
+            value={title}
+            onChange={(e) => setTitle(e.target.value)}
+            placeholder="Enter title"
           />
         </div>
         <div className={styles.formGroup}>
-          <label htmlFor="targetAmount">Target Amount</label>
-          <input
-            type="number"
-            id="targetAmount"
-            name="targetAmount"
-            value={formState.targetAmount}
-            onChange={handleChange}
-            required
+          <label htmlFor="description">Description</label>
+          <textarea
+            id="description"
+            value={description}
+            onChange={(e) => setDescription(e.target.value)}
+            placeholder="Enter description"
           />
         </div>
         <div className={styles.formGroup}>
-          <label htmlFor="deadline">Deadline</label>
+          <label htmlFor="targetDate">Target Date</label>
           <input
             type="date"
-            id="deadline"
-            name="deadline"
-            value={formState.deadline}
-            onChange={handleChange}
-            required
+            id="targetDate"
+            value={targetDate}
+            onChange={(e) => setTargetDate(e.target.value)}
           />
         </div>
+        <div className={styles.formGroup}>
+          <label htmlFor="amount">Amount</label>
+          <input
+            type="number"
+            id="amount"
+            value={amount}
+            onChange={(e) => setAmount(e.target.value)}
+            placeholder="Enter amount"
+          />
+        </div>
+        <div className={styles.formGroup}>
+          <label htmlFor="category">Category</label>
+          <select
+            id="category"
+            value={category}
+            onChange={(e) => setCategory(e.target.value)}
+          >
+            <option value="Major Purchase">Major Purchase</option>
+            <option value="Travel">Travel</option>
+            <option value="Education">Education</option>
+            <option value="Emergency Fund">Emergency Fund</option>
+            <option value="Retirement">Retirement</option>
+            <option value="Debt Repayment">Debt Repayment</option>
+            <option value="Other">Other</option>
+          </select>
+        </div>
         <button type="submit" className={styles.saveButton}>
-          Save
+          Add Goal
         </button>
       </form>
     </div>
   );
-};
-
-GoalForm.propTypes = {
-  onSave: PropTypes.func.isRequired,
-  goal: PropTypes.shape({
-    name: PropTypes.string,
-    targetAmount: PropTypes.number,
-    deadline: PropTypes.string,
-  }),
 };
 
 export default GoalForm;

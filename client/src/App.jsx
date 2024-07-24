@@ -7,8 +7,8 @@ import Login from './pages/Login';
 import SignUp from './pages/Signup';
 import TransactionsPage from './pages/TransactionsPage';
 import GoalsManager from './pages/GoalsManager';
-import InvestmentDetails from './pages/InvestmentDetails';
-import InvestmentList from './pages/InvestmentList';
+import InvestmentDetailsPage from './pages/InvestmentDetailsPage';
+import InvestmentsPage from './pages/InvestmentsPage';
 import InvestmentForm from './components/forms/InvestmentForm';
 import BudgetManager from './pages/BudgetManager';
 import FinancialOverview from './pages/FinancialOverview';
@@ -51,9 +51,9 @@ function App() {
               <Route path="/transactions" element={<PrivateRoute element={TransactionsPage} />} />
               <Route path="/accounts" element={<PrivateRoute element={AccountsPage} />} />
               <Route path="/goals" element={<PrivateRoute element={GoalsManager} />} />
-              <Route path="/investments" element={<PrivateRoute element={InvestmentList} />} />
+              <Route path="/investments" element={<PrivateRoute element={InvestmentsPage} />} />
               <Route path="/investments/new" element={<PrivateRoute element={InvestmentForm} />} />
-              <Route path="/investments/:id" element={<PrivateRoute element={InvestmentDetails} />} />
+              <Route path="/investments/:id" element={<PrivateRoute element={InvestmentDetailsPage} />} />
               <Route path="/financial-overview" element={<PrivateRoute element={FinancialOverview} />} />
               <Route path="/budget" element={<PrivateRoute element={BudgetManager} />} />
               <Route path="/contact" element={<PrivateRoute element={Contact} />} />

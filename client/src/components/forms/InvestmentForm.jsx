@@ -1,115 +1,98 @@
 import React, { useState } from 'react';
-import { gql, useMutation } from '@apollo/client';
+import styles from './InvestmentForm.module.css';
 
-const ADD_INVESTMENT = gql`
-  mutation AddInvestment($input: AddInvestmentInput!) {
-    addInvestment(input: $input) {
-      id
-      name
-      type
-      currentValue
-      initialInvestment
-      date
-      description
+const InvestmentForm = ({ onSave }) => {
+  const [name, setName] = useState('');
+  const [type, setType] = useState('');
+  const [amount, setAmount] = useState('$');
+  const [date, setDate] = useState('');
+
+  const formatAmountWithCommas = (value) => {
+    const cleanedValue = value.replace(/,/g, '').replace('$', '');
+    const numericValue = parseFloat(cleanedValue);
+    if (isNaN(numericValue)) {
+      return '$';
     }
-  }
-`;
-
-const InvestmentForm = () => {
-  const [formData, setFormData] = useState({
-    name: '',
-    type: '',
-    currentValue: '',
-    initialInvestment: '',
-    date: '',
-    description: '',
-  });
-
-  const history = useHistory();
-  const [addInvestment] = useMutation(ADD_INVESTMENT);
-
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData({
-      ...formData,
-      [name]: value,
-    });
+    return '$' + numericValue.toLocaleString();
   };
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    try {
-      await addInvestment({ variables: { input: formData } });
-      history.push('/investments');
-    } catch (error) {
-      console.error('Error adding investment:', error);
+  const handleAmountChange = (e) => {
+    const value = e.target.value;
+    if (value === '' || value === '$') {
+      setAmount('$');
+    } else if (!isNaN(value.replace(/[$,]/g, ''))) {
+      setAmount(formatAmountWithCommas(value));
     }
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const numericAmount = parseFloat(amount.replace(/[$,]/g, ''));
+    if (!name || !type || isNaN(numericAmount) || !date) {
+      alert('Please fill in all fields.');
+      return;
+    }
+    onSave({ name, type, amount: numericAmount, date });
+    setName('');
+    setType('');
+    setAmount('$');
+    setDate('');
   };
 
   return (
-    <div>
-      <h2>Add New Investment</h2>
-      <form onSubmit={handleSubmit}>
-        <div>
-          <label>Name</label>
+    <div className={styles.investmentFormContainer}>
+      <form className={styles.investmentForm} onSubmit={handleSubmit}>
+        <h1 className={styles.title}>Investment Manager</h1>
+        <div className={styles.formGroup}>
+          <label htmlFor="name">Investment Name</label>
           <input
             type="text"
-            name="name"
-            value={formData.name}
-            onChange={handleChange}
-            required
+            id="name"
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+            placeholder="Enter investment name"
           />
         </div>
-        <div>
-          <label>Type</label>
-          <input
-            type="text"
-            name="type"
-            value={formData.type}
-            onChange={handleChange}
-            required
-          />
+        <div className={styles.formGroup}>
+          <label htmlFor="type">Investment Type</label>
+          <select
+            id="type"
+            value={type}
+            onChange={(e) => setType(e.target.value)}
+          >
+            <option value="">Select type</option>
+            <option value="Stocks">Stocks</option>
+            <option value="Bonds">Bonds</option>
+            <option value="Real Estate">Real Estate</option>
+            <option value="Mutual Funds">Mutual Funds</option>
+            <option value="Other">Other</option>
+          </select>
         </div>
-        <div>
-          <label>Current Value</label>
-          <input
-            type="number"
-            name="currentValue"
-            value={formData.currentValue}
-            onChange={handleChange}
-            required
-          />
+        <div className={styles.formGroup}>
+          <label htmlFor="amount">Amount</label>
+          <div className={styles.inputWithPrefix}>
+            <input
+              type="text"
+              id="amount"
+              value={amount}
+              onChange={handleAmountChange}
+              placeholder="Enter amount"
+            />
+          </div>
         </div>
-        <div>
-          <label>Initial Investment</label>
-          <input
-            type="number"
-            name="initialInvestment"
-            value={formData.initialInvestment}
-            onChange={handleChange}
-            required
-          />
-        </div>
-        <div>
-          <label>Date</label>
+        <div className={styles.formGroup}>
+          <label htmlFor="date">Date</label>
           <input
             type="date"
-            name="date"
-            value={formData.date}
-            onChange={handleChange}
-            required
+            id="date"
+            value={date}
+            onChange={(e) => setDate(e.target.value)}
+            className={styles.dateInput}
           />
         </div>
-        <div>
-          <label>Description</label>
-          <textarea
-            name="description"
-            value={formData.description}
-            onChange={handleChange}
-            required
-          ></textarea>
-        </div>
-        <button type="submit">Add Investment</button>
+        <button type="submit" className={styles.saveButton}>
+          Add Investment
+        </button>
       </form>
     </div>
   );
