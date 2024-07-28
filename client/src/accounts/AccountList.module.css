@@ -1,0 +1,11 @@
+.accountList {
+    width: 100%;
+    max-width: 800px;
+    margin-top: 20px;
+    color: white; /* Ensure text color is white */
+}
+
+.noAccounts {
+    color: white; /* Ensure text color is white */
+    text-align: center;
+}

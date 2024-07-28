@@ -10,13 +10,21 @@ const GoalsManager = () => {
     setGoals([...goals, goal]);
   };
 
+  const handleEditGoal = (goal) => {
+    // Implement your edit logic here
+  };
+
+  const handleDeleteGoal = (goalId) => {
+    setGoals(goals.filter(goal => goal.id !== goalId));
+  };
+
   return (
     <div className={styles.goalsManagerContainer}>
       <div className={styles.quotes}>
         <RotatingQuotes />
       </div>
       <GoalForm onSave={addGoal} />
-      <GoalList goals={goals} />
+      <GoalList goals={goals} onEdit={handleEditGoal} onDelete={handleDeleteGoal} />
     </div>
   );
 };
@@ -45,7 +53,11 @@ const RotatingQuotes = () => {
     return () => clearInterval(interval);
   }, [quotes.length]);
 
-  return <p className={styles.motivationalQuotes}>{quotes[currentQuoteIndex]}</p>;
+  return (
+    <div className={styles.motivationalQuotes}>
+      <p>"{quotes[currentQuoteIndex]}"</p>
+    </div>
+  );
 };
 
 export default GoalsManager;

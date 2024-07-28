@@ -10,14 +10,11 @@ const FinancialOverview = () => {
   const [investments, setInvestments] = useState([]);
 
   useEffect(() => {
-    // Fetch accounts data
-    fetch('/api/accounts')
-      .then(response => {
-        if (!response.ok) throw new Error('Network response was not ok');
-        return response.json();
-      })
-      .then(data => setAccounts(data))
-      .catch(error => console.error('Error fetching accounts:', error));
+    // Load accounts from local storage
+    const storedAccounts = localStorage.getItem('accounts');
+    if (storedAccounts) {
+      setAccounts(JSON.parse(storedAccounts));
+    }
 
     // Fetch transactions data
     fetch('/api/transactions')
@@ -59,7 +56,7 @@ const FinancialOverview = () => {
       <h1>Financial Overview</h1>
       <div className={styles.summaryBox}>
         <h2>Accounts Summary</h2>
-        <p>Total Balance: ${calculateTotalBalance().toFixed(2)}</p>
+        <p>Total Balance: ${calculateTotalBalance().toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ',')}</p>
         <Link to="/accounts" className={styles.viewDetailsButton}>View Details</Link>
       </div>
       <div className={styles.summaryBox}>
